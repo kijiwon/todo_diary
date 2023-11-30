@@ -8,5 +8,5 @@ root.render(
   <>
     <GlobalStyle />
     <App />
-  </>
+  </>,
 );

@@ -39,9 +39,6 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 html {
-	font-family: -apple-system, "system-ui", Segoe UI, BlinkMacSystemFont
-    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-    sans-serif;
 	height: 100vh;
 	::-webkit-scrollbar {
   width: 0;
@@ -52,7 +49,6 @@ html {
 
 body {
 	line-height: 1;
-	font-family: Pretendard;
 	height: 100vh;
 }
 ol, ul {
