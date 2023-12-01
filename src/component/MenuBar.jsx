@@ -49,7 +49,7 @@ const MenuButton = styled.button`
 `;
 
 const SideBarWrapper = styled.div`
-  display: ${(props) => (props.$openMenu ? 'flex' : 'none')};
+  display: ${(props) => (props.$opened === 'true' ? 'flex' : 'none')};
   width: 120px;
   height: 100vh;
   flex-direction: column;
@@ -106,7 +106,7 @@ export const DesktopMenuBar = (props) => {
 
   return (
     <>
-      <MenuBarWrapper size={props.size} $openmenu={openMenu.toString()}>
+      <MenuBarWrapper size={props.size} $opened={openMenu.toString()}>
         <MenuButton onClick={handleOpenSideBar}>
           {openMenu ? (
             <IoClose style={{ fontSize: '28px' }} />
@@ -121,7 +121,7 @@ export const DesktopMenuBar = (props) => {
           <IoMdFlower style={{ fontSize: '30px' }} />
         </IconWrapper>
       </MenuBarWrapper>
-      <SideBarWrapper $openmenu={openMenu.toString()}>
+      <SideBarWrapper $opened={openMenu.toString()}>
         <NavWrapper>
           <NavbarLink to={'/'} onClick={handleOpenSideBar}>
             투두
