@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLOR } from './style/theme';
+import { COLOR, SIZE } from './style/theme';
 import { DesktopMenuBar, MobileMenuBar } from './component/MenuBar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ import Info from './pages/Info';
 const AppWrapper = styled.div`
   background-color: ${COLOR.bg_blue};
   width: 100%;
+  min-width: ${SIZE.mobileMin};
   height: 100vh;
   position: relative;
 `;
