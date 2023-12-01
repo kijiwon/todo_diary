@@ -20,7 +20,6 @@ const slideIn = keyframes`
 const MenuBarWrapper = styled.header`
   background-color: ${COLOR.bg_pink};
   color: white;
-
   display: ${(props) => (props.size === 'desktop' ? 'none' : 'flex')};
   width: 100%;
   height: 50px;
@@ -50,16 +49,18 @@ const MenuButton = styled.button`
 `;
 
 const SideBarWrapper = styled.div`
-  display: ${(props) => (props.openSideBar ? 'flex' : 'none')};
+  display: ${(props) => (props.$openMenu ? 'flex' : 'none')};
   width: 120px;
   height: 100vh;
   flex-direction: column;
   align-items: start;
+  position: fixed;
   background-color: ${COLOR.bg_pink};
   margin-left: 80px;
   text-align: start;
   animation: ${slideIn} 0.3s ease-in-out;
   font-size: 33px;
+  z-index: 1000;
 `;
 
 const IconWrapper = styled.div`
@@ -97,17 +98,17 @@ export const NavbarLink = styled(NavLink)`
 `;
 
 export const DesktopMenuBar = (props) => {
-  const [openSideBar, setOpenSideBar] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
 
   const handleOpenSideBar = () => {
-    setOpenSideBar(!openSideBar);
+    setOpenMenu(!openMenu);
   };
 
   return (
     <>
-      <MenuBarWrapper size={props.size} openSideBar={openSideBar}>
+      <MenuBarWrapper size={props.size} $openmenu={openMenu.toString()}>
         <MenuButton onClick={handleOpenSideBar}>
-          {openSideBar ? (
+          {openMenu ? (
             <IoClose style={{ fontSize: '28px' }} />
           ) : (
             <FiMenu style={{ fontSize: '28px' }} />
@@ -120,7 +121,7 @@ export const DesktopMenuBar = (props) => {
           <IoMdFlower style={{ fontSize: '30px' }} />
         </IconWrapper>
       </MenuBarWrapper>
-      <SideBarWrapper openSideBar={openSideBar}>
+      <SideBarWrapper $openmenu={openMenu.toString()}>
         <NavWrapper>
           <NavbarLink to={'/'} onClick={handleOpenSideBar}>
             투두
