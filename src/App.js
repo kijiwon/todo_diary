@@ -7,6 +7,7 @@ import Todo from './pages/Todo';
 import Diary from './pages/Diary';
 import Calendar from './pages/Calendar';
 import Info from './pages/Info';
+import DiaryAdd from './pages/DiaryAdd';
 
 const AppWrapper = styled.div`
   background-color: ${COLOR.bg_blue};
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Todo />} />
           <Route path="/diary" element={<Diary />} />
+          <Route path="/diary/add" element={<DiaryAdd />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/info" element={<Info />} />
         </Routes>

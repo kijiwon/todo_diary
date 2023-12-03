@@ -35,10 +35,8 @@ const TodoWrapper = styled.section`
   }
 `;
 
-const TodoLogo = styled.div`
-  img {
-    width: 90px;
-  }
+const TodoLogo = styled.img`
+  width: 90px;
 `;
 
 const DateWrapper = styled.div`
@@ -165,9 +163,10 @@ const Todo = () => {
   return (
     <TodoContainer>
       <TodoWrapper>
-        <TodoLogo>
-          <img src={process.env.PUBLIC_URL + '/assets/todologo.png'} alt="" />
-        </TodoLogo>
+        <TodoLogo
+          src={process.env.PUBLIC_URL + '/assets/todologo.png'}
+          alt=""
+        />
         <DateWrapper>
           <p>{date.getFullYear()}.</p>
           <p>{date.getMonth() + 1}.</p>
@@ -194,7 +193,6 @@ const Todo = () => {
             onClick={() => handleAddTodo()}
           />
         </InputWrapper>
-
         {todos.length !== 0 ? (
           <TodoList />
         ) : (

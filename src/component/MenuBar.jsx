@@ -116,8 +116,8 @@ export const DesktopMenuBar = (props) => {
         </MenuButton>
         <IconWrapper>
           <CiBoxList style={{ fontSize: '32px' }} />
-          <FaCalendarAlt style={{ fontSize: '30px' }} />
           <FaPen style={{ fontSize: '30px' }} />
+          <FaCalendarAlt style={{ fontSize: '30px' }} />
           <IoMdFlower style={{ fontSize: '30px' }} />
         </IconWrapper>
       </MenuBarWrapper>
