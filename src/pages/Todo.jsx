@@ -5,39 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addTodo } from '../redux/todoSlice';
 import TodoList from '../component/TodoList';
 import Button from '../component/Button';
-
-const TodoContainer = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const TodoWrapper = styled.section`
-  width: 100%;
-  height: 90vh;
-  position: absolute;
-  bottom: 0px;
-  border: none;
-  border-radius: 25px 25px 0 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-
-  @media (min-width: ${SIZE.tablet}) {
-    width: 670px;
-    height: 90vh;
-    margin-left: 80px;
-    border-radius: 25px;
-    position: inherit;
-  }
-`;
-
-const TodoLogo = styled.img`
-  width: 90px;
-`;
+import {
+  CommonContainer,
+  CommonWrapper,
+  CommonLogo,
+  CommonSelect,
+} from '../component/CommonStyle';
 
 const DateWrapper = styled.div`
   display: flex;
@@ -76,32 +49,13 @@ const InputWrapper = styled.div`
       outline: none;
     }
   }
-  select {
-    width: 80px;
-    height: 30px;
-    font-size: 13px;
-    letter-spacing: 3px;
-    text-align: center;
-    border: none;
-    border-bottom: 2px solid ${COLOR.btn_blue};
-    margin-right: 24px;
-    &:focus {
-      outline: none;
-    }
-  }
+
   @media (min-width: ${SIZE.tablet}) {
     justify-content: center;
     input {
       width: 180px;
       height: 40px;
       font-size: 22px;
-    }
-
-    select {
-      width: 100px;
-      height: 40px;
-      font-size: 16px;
-      letter-spacing: 4px;
     }
   }
 `;
@@ -128,7 +82,7 @@ const EmptyDataWrapper = styled.div`
 
 const Todo = () => {
   const dispatch = useDispatch();
-  const todos = useSelector((state) => state.data);
+  const todos = useSelector((state) => state.todo.data);
   const [text, setText] = useState('');
   const [importance, setImportance] = useState('⭐');
 
@@ -161,9 +115,9 @@ const Todo = () => {
   }, [todos]);
 
   return (
-    <TodoContainer>
-      <TodoWrapper>
-        <TodoLogo
+    <CommonContainer>
+      <CommonWrapper>
+        <CommonLogo
           src={process.env.PUBLIC_URL + '/assets/todologo.png'}
           alt=""
         />
@@ -179,14 +133,14 @@ const Todo = () => {
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
-          <select
+          <CommonSelect
             value={importance}
             onChange={(e) => setImportance(e.target.value)}
           >
             <option value={'⭐'}>⭐</option>
             <option value={'⭐⭐'}>⭐⭐</option>
             <option value={'⭐⭐⭐'}>⭐⭐⭐</option>
-          </select>
+          </CommonSelect>
           <Button
             type={'add'}
             text={'작성하기'}
@@ -204,8 +158,8 @@ const Todo = () => {
             />
           </EmptyDataWrapper>
         )}
-      </TodoWrapper>
-    </TodoContainer>
+      </CommonWrapper>
+    </CommonContainer>
   );
 };
 

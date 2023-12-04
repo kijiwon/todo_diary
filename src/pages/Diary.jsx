@@ -4,39 +4,34 @@ import { useState } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 import Button from '../component/Button';
+import {
+  CommonContainer,
+  CommonWrapper,
+  CommonLogo,
+  CommonSelect,
+} from '../component/CommonStyle';
 
-const DiaryContainer = styled.div`
+const DateWrapper = styled.section`
   width: 100%;
-  height: 100vh;
+  height: 40px;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
-`;
-
-const DiaryWrapper = styled.div`
-  width: 100%;
-  height: 90vh;
-  position: absolute;
-  bottom: 0px;
-  border: none;
-  border-radius: 25px 25px 0 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
+  font-size: 30px;
+  font-family: 'Gaegu';
+  letter-spacing: 5px;
+  margin-bottom: 30px;
+  button {
+    border: none;
+    background-color: inherit;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
 
   @media (min-width: ${SIZE.tablet}) {
-    width: 670px;
-    height: 90vh;
-    margin-left: 80px;
-    border-radius: 25px;
-    position: inherit;
-  }
-`;
-
-const DiaryLogo = styled.div`
-  img {
-    width: 80px;
   }
 `;
 
@@ -44,7 +39,7 @@ const Diary = () => {
   const [curDate, setCurDate] = useState(new Date());
   const nav = useNavigate();
 
-  const dateText = `${curDate.getFullYear()}년 ${curDate.getMonth()}월`;
+  const dateText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`;
 
   const increaseMonth = () => {
     setCurDate(
@@ -66,12 +61,12 @@ const Diary = () => {
   };
 
   return (
-    <DiaryContainer>
-      <DiaryWrapper>
-        <DiaryLogo>
+    <CommonContainer>
+      <CommonWrapper>
+        <CommonLogo>
           <img alt="" src={process.env.PUBLIC_URL + '/assets/diarylogo.png'} />
-        </DiaryLogo>
-        <div>
+        </CommonLogo>
+        <DateWrapper>
           <button onClick={decreaseMonth}>
             <IoIosArrowBack />
           </button>
@@ -79,14 +74,17 @@ const Diary = () => {
           <button onClick={increaseMonth}>
             <IoIosArrowForward />
           </button>
+        </DateWrapper>
+        <div>
+          <CommonSelect></CommonSelect>
+          <Button
+            type={'add'}
+            text={'일기 작성하기'}
+            onClick={() => nav('/diary/add')}
+          />
         </div>
-        <Button
-          type={'add'}
-          text={'일기 작성하기'}
-          onClick={() => nav('/diary/add')}
-        />
-      </DiaryWrapper>
-    </DiaryContainer>
+      </CommonWrapper>
+    </CommonContainer>
   );
 };
 

@@ -27,7 +27,6 @@ const ControlBar = styled.div`
 
   @media (min-width: ${SIZE.tablet}) {
     width: 83%;
-    /* justify-content: start; */
   }
 `;
 
@@ -136,7 +135,7 @@ const ControlMenu = ({ value, onChange, optionList }) => {
 };
 
 const TodoList = () => {
-  const todos = useSelector((state) => state.data);
+  const todos = useSelector((state) => state.todo.data);
   const dispatch = useDispatch();
   const [sortType, setSortType] = useState('latest');
   const [filter, setFilter] = useState('all');
