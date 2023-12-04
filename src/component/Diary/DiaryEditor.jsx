@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import { getStringDate } from '../../util/date';
 import { useNavigate } from 'react-router-dom';
@@ -6,7 +6,7 @@ import { weatherList } from '../../util/weather';
 import Button from '../Button';
 import { useDispatch, useSelector } from 'react-redux';
 import WeatherItem from '../WeatherItem';
-import { addDiary } from '../../redux/diarySlice';
+import { addDiary, editDiary } from '../../redux/diarySlice';
 import { COLOR } from '../../style/theme';
 
 const EditorWrapper = styled.div`
@@ -78,7 +78,7 @@ const ButtonWrapper = styled.div`
   align-items: center;
 `;
 
-const DiaryEditor = () => {
+const DiaryEditor = ({ isEdit, diaryData }) => {
   const [date, setDate] = useState(getStringDate(new Date()));
   const [weather, setWeather] = useState(0);
   const [content, setContent] = useState('');
@@ -102,6 +102,23 @@ const DiaryEditor = () => {
     dispatch(addDiary({ id: id, date, weather, content }));
     nav('/diary', { replace: true });
   };
+
+  const handleEdit = () => {
+    if (content.length === 0) {
+      contentRef.current.focus();
+      return;
+    }
+    dispatch(editDiary({ id: diaryData.id, date, weather, content }));
+    nav(`/diary/${diaryData.id}`, { replace: true });
+  };
+
+  useEffect(() => {
+    if (isEdit) {
+      setDate(diaryData.date);
+      setWeather(diaryData.weather);
+      setContent(diaryData.content);
+    }
+  }, [isEdit, diaryData]);
 
   return (
     <EditorWrapper>
@@ -142,7 +159,11 @@ const DiaryEditor = () => {
           text={'뒤로가기'}
           onClick={() => nav('/diary', { replace: true })}
         />
-        <Button type={'add'} text={'작성하기'} onClick={handleSubmit} />
+        {isEdit ? (
+          <Button type={'edit'} text={'수정하기'} onClick={handleEdit} />
+        ) : (
+          <Button type={'add'} text={'작성하기'} onClick={handleSubmit} />
+        )}
       </ButtonWrapper>
     </EditorWrapper>
   );
