@@ -18,7 +18,7 @@ const ButtonWrapper = styled.button`
   cursor: pointer;
   &:hover {
     background-color: ${(props) =>
-      props.type === 'add'
+      props.type === 'add' || props.type === 'edit'
         ? `${COLOR.btn_pink_hover}`
         : `${COLOR.btn_blue_hover}`};
   }

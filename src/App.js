@@ -9,6 +9,7 @@ import Calendar from './pages/Calendar';
 import Info from './pages/Info';
 import DiaryAdd from './pages/DiaryAdd';
 import DiaryDetail from './pages/DiaryDetail';
+import DiaryEdit from './pages/DiaryEdit';
 
 const AppWrapper = styled.div`
   background-color: ${COLOR.bg_blue};
@@ -28,6 +29,7 @@ function App() {
           <Route path="/diary" element={<Diary />} />
           <Route path="/diary/add" element={<DiaryAdd />} />
           <Route path="/diary/:id" element={<DiaryDetail />} />
+          <Route path="/diary/:id/edit" element={<DiaryEdit />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/info" element={<Info />} />
         </Routes>

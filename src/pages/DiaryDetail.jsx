@@ -125,7 +125,6 @@ const DiaryDetail = () => {
       }
     }
   });
-  console.log(diaryData);
 
   return (
     <CommonContainer>
@@ -153,7 +152,13 @@ const DiaryDetail = () => {
         </DiaryContent>
         <ButtonWrapper>
           <Button type={'delete'} text={'삭제 하기'} onClick={handleDelete} />
-          <Button type={'edit'} text={'수정 하기'} onClick={() => {}} />
+          <Button
+            type={'edit'}
+            text={'수정 하기'}
+            onClick={() => {
+              nav(`/diary/${diaryData.id}/edit`);
+            }}
+          />
         </ButtonWrapper>
       </CommonWrapper>
     </CommonContainer>
