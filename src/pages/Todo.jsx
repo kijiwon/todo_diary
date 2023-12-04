@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { COLOR, SIZE } from '../style/theme';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,7 +17,7 @@ const DateWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-size: 36px;
+  font-size: 32px;
   font-family: 'Gaegu';
   letter-spacing: 6px;
   margin-top: 20px;
@@ -109,10 +109,6 @@ const Todo = () => {
     setText('');
     setImportance('⭐');
   };
-
-  useEffect(() => {
-    console.log(todos);
-  }, [todos]);
 
   return (
     <CommonContainer>

@@ -10,6 +10,7 @@ import {
   CommonLogo,
   CommonSelect,
 } from '../component/CommonStyle';
+import { useSelector } from 'react-redux';
 
 const DateWrapper = styled.section`
   width: 100%;
@@ -38,6 +39,7 @@ const DateWrapper = styled.section`
 const Diary = () => {
   const [curDate, setCurDate] = useState(new Date());
   const nav = useNavigate();
+  const diary = useSelector((state) => state.diary.data);
 
   const dateText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`;
 
@@ -59,13 +61,15 @@ const Diary = () => {
       ),
     );
   };
+  console.log(diary);
 
   return (
     <CommonContainer>
       <CommonWrapper>
-        <CommonLogo>
-          <img alt="" src={process.env.PUBLIC_URL + '/assets/diarylogo.png'} />
-        </CommonLogo>
+        <CommonLogo
+          alt=""
+          src={process.env.PUBLIC_URL + '/assets/diarylogo.png'}
+        />
         <DateWrapper>
           <button onClick={decreaseMonth}>
             <IoIosArrowBack />
@@ -83,6 +87,8 @@ const Diary = () => {
             onClick={() => nav('/diary/add')}
           />
         </div>
+        {diary.length !== 0 &&
+          diary.map((it) => <div key={it.id}>{it.content}</div>)}
       </CommonWrapper>
     </CommonContainer>
   );

@@ -30,10 +30,8 @@ export const CommonWrapper = styled.div`
   }
 `;
 
-export const CommonLogo = styled.div`
-  img {
-    width: 80px;
-  }
+export const CommonLogo = styled.img`
+  width: 80px;
 `;
 
 export const CommonSelect = styled.select`

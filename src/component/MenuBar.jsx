@@ -145,8 +145,8 @@ export const MobileMenuBar = (props) => {
   return (
     <MenuBarWrapper size={props.size}>
       <NavbarLink to={'/'}>투두</NavbarLink>
-      <NavbarLink to={'/calendar'}>캘린더</NavbarLink>
       <NavbarLink to={'/diary'}>다이어리</NavbarLink>
+      <NavbarLink to={'/calendar'}>캘린더</NavbarLink>
       <NavbarLink to={'/info'}>어바웃</NavbarLink>
     </MenuBarWrapper>
   );

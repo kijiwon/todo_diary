@@ -7,16 +7,15 @@ const diarySlice = createSlice({
   },
   reducers: {
     addDiary: (state, action) => {
-      const { id, date, weather, text } = action.payload;
-      state.data.unshift({ id, date, weather, text });
+      state.data.push(action.payload);
     },
     editDiary: (state, action) => {
-      const { id, date, weather, text } = action.payload;
+      const { id, date, weather, content } = action.payload;
       const diaryToEdit = state.data.find((it) => it.id === id);
       if (diaryToEdit) {
         diaryToEdit.date = date;
         diaryToEdit.weather = weather;
-        diaryToEdit.text = text;
+        diaryToEdit.content = content;
       }
     },
     deleteDiary: (state, action) => {
