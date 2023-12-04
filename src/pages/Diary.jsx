@@ -12,7 +12,6 @@ import DiaryList from '../component/Diary/DiaryList';
 
 const DateWrapper = styled.section`
   width: 100%;
-  height: 40px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -81,7 +80,7 @@ const Diary = () => {
       );
     }
   }, [diaryList, curDate]);
-  console.log(diaryData);
+
   return (
     <CommonContainer>
       <CommonWrapper>

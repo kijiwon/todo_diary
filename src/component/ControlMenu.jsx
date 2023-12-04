@@ -3,7 +3,7 @@ import { COLOR } from '../style/theme';
 
 const ControlMenuWrapper = styled.select`
   width: 100px;
-  height: 26px;
+  height: 30px;
   border-radius: 5px;
   border: 1px solid ${COLOR.btn_blue};
   text-align: center;

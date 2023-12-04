@@ -8,7 +8,10 @@ import styled from 'styled-components';
 
 const DiaryListWrapper = styled.section`
   width: 90%;
+  height: 70%;
+  overflow-y: scroll;
   align-items: center;
+  overflow-y: hidden;
 `;
 
 const ControlBox = styled.div`
@@ -64,7 +67,6 @@ const DiaryList = ({ diaryData }) => {
           onClick={() => nav('/diary/add')}
         />
       </ControlBox>
-
       {diaryList.length !== 0 &&
         getProcessedDiaryList().map((it) => <DiaryItem key={it.id} {...it} />)}
     </DiaryListWrapper>

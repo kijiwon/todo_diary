@@ -7,7 +7,9 @@ const ButtonWrapper = styled.button`
   border: none;
   border-radius: 10px;
   background-color: ${(props) =>
-    props.type === 'add' ? `${COLOR.btn_pink}` : `${COLOR.btn_blue}`};
+    props.type === 'add' || props.type === 'edit'
+      ? `${COLOR.btn_pink}`
+      : `${COLOR.btn_blue}`};
   color: white;
   font-family: 'Poor Story';
   font-size: 16px;
