@@ -7,7 +7,7 @@ const diarySlice = createSlice({
   },
   reducers: {
     addDiary: (state, action) => {
-      state.data.push(action.payload);
+      state.data.unshift(action.payload);
     },
     editDiary: (state, action) => {
       const { id, date, weather, content } = action.payload;

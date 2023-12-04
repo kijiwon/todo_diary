@@ -1,16 +1,14 @@
 import styled from 'styled-components';
 import { SIZE } from '../style/theme';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-import { useNavigate } from 'react-router-dom';
-import Button from '../component/Button';
 import {
   CommonContainer,
   CommonWrapper,
   CommonLogo,
-  CommonSelect,
 } from '../component/CommonStyle';
 import { useSelector } from 'react-redux';
+import DiaryList from '../component/Diary/DiaryList';
 
 const DateWrapper = styled.section`
   width: 100%;
@@ -38,8 +36,9 @@ const DateWrapper = styled.section`
 
 const Diary = () => {
   const [curDate, setCurDate] = useState(new Date());
-  const nav = useNavigate();
-  const diary = useSelector((state) => state.diary.data);
+  const [diaryData, setDiaryData] = useState([]);
+
+  const diaryList = useSelector((state) => state.diary.data);
 
   const dateText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`;
 
@@ -61,8 +60,28 @@ const Diary = () => {
       ),
     );
   };
-  console.log(diary);
 
+  useEffect(() => {
+    if (diaryList.length >= 1) {
+      const firstDay = new Date(curDate.getFullYear(), curDate.getMonth(), 1);
+      const lastDay = new Date(
+        curDate.getFullYear(),
+        curDate.getMonth() + 1,
+        0,
+        23,
+        59,
+        59,
+      );
+
+      setDiaryData(
+        diaryList.filter((it) => {
+          const diaryDate = new Date(it.date);
+          return diaryDate >= firstDay && diaryDate <= lastDay;
+        }),
+      );
+    }
+  }, [diaryList, curDate]);
+  console.log(diaryData);
   return (
     <CommonContainer>
       <CommonWrapper>
@@ -79,19 +98,10 @@ const Diary = () => {
             <IoIosArrowForward />
           </button>
         </DateWrapper>
-        <div>
-          <CommonSelect></CommonSelect>
-          <Button
-            type={'add'}
-            text={'일기 작성하기'}
-            onClick={() => nav('/diary/add')}
-          />
-        </div>
-        {diary.length !== 0 &&
-          diary.map((it) => <div key={it.id}>{it.content}</div>)}
+        <DiaryList diaryData={diaryData} />
       </CommonWrapper>
     </CommonContainer>
   );
 };
 
-export default Diary;
+export default React.memo(Diary);

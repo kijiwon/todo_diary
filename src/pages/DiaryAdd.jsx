@@ -3,7 +3,7 @@ import {
   CommonWrapper,
   CommonLogo,
 } from '../component/CommonStyle';
-import DiaryEditor from '../component/DiaryEditor';
+import DiaryEditor from '../component/Diary/DiaryEditor';
 
 const DiaryAdd = () => {
   return (

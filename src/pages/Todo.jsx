@@ -1,15 +1,14 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { COLOR, SIZE } from '../style/theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTodo } from '../redux/todoSlice';
-import TodoList from '../component/TodoList';
+import TodoList from '../component/Todo/TodoList';
 import Button from '../component/Button';
 import {
   CommonContainer,
   CommonWrapper,
   CommonLogo,
-  CommonSelect,
 } from '../component/CommonStyle';
 
 const DateWrapper = styled.div`
@@ -49,13 +48,31 @@ const InputWrapper = styled.div`
       outline: none;
     }
   }
-
+  select {
+    width: 80px;
+    height: 30px;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-align: center;
+    border: none;
+    border-bottom: 2px solid ${COLOR.btn_blue};
+    margin-right: 24px;
+    &:focus {
+      outline: none;
+    }
+  }
   @media (min-width: ${SIZE.tablet}) {
     justify-content: center;
     input {
       width: 180px;
       height: 40px;
       font-size: 22px;
+    }
+    select {
+      width: 100px;
+      height: 40px;
+      font-size: 16px;
+      letter-spacing: 4px;
     }
   }
 `;
@@ -129,14 +146,14 @@ const Todo = () => {
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
-          <CommonSelect
+          <select
             value={importance}
             onChange={(e) => setImportance(e.target.value)}
           >
             <option value={'⭐'}>⭐</option>
             <option value={'⭐⭐'}>⭐⭐</option>
             <option value={'⭐⭐⭐'}>⭐⭐⭐</option>
-          </CommonSelect>
+          </select>
           <Button
             type={'add'}
             text={'작성하기'}
@@ -159,4 +176,4 @@ const Todo = () => {
   );
 };
 
-export default Todo;
+export default React.memo(Todo);

@@ -1,11 +1,12 @@
 /* eslint-disable react/no-unknown-property */
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { completeTodo, deleteTodo } from '../redux/todoSlice';
+import { completeTodo, deleteTodo } from '../../redux/todoSlice';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
-import Button from './Button';
-import { COLOR, SIZE } from '../style/theme';
+import Button from '../Button';
+import { COLOR, SIZE } from '../../style/theme';
+import { ControlMenu } from '../ControlMenu';
 
 const TodoWrapper = styled.div`
   width: 90%;
@@ -61,7 +62,7 @@ const TodoItem = styled.p`
   }
   @media (min-width: ${SIZE.tablet}) {
     span {
-      font-size: 20px;
+      font-size: 24px;
       &:last-child {
         font-size: 18px;
         margin-left: 24px;
@@ -89,19 +90,6 @@ const CompleteButton = styled.button`
   color: ${COLOR.btn_pink};
 `;
 
-const ControlMenuWrapper = styled.select`
-  width: 100px;
-  height: 26px;
-  border-radius: 5px;
-  border: 1px solid ${COLOR.btn_blue};
-  text-align: center;
-  font-size: 16px;
-  font-family: 'Poor Story';
-  margin-bottom: 20px;
-  margin-right: 10px;
-  outline: none;
-`;
-
 const optionList = [
   {
     value: 'latest',
@@ -119,37 +107,19 @@ const filterList = [
   { value: 'complete', name: '완료' },
 ];
 
-const ControlMenu = ({ value, onChange, optionList }) => {
-  return (
-    <ControlMenuWrapper
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-    >
-      {optionList.map((it, idx) => (
-        <option key={idx} value={it.value}>
-          {it.name}
-        </option>
-      ))}
-    </ControlMenuWrapper>
-  );
-};
-
 const TodoList = () => {
   const todos = useSelector((state) => state.todo.data);
   const dispatch = useDispatch();
-  const [sortType, setSortType] = useState('latest');
+  const [sortTodoType, setSortTodoType] = useState('latest');
   const [filter, setFilter] = useState('all');
 
   const getProcessedTodoList = () => {
-    // sort를 사용하면 원본 배열 자체가 바뀌기 때문에 복사본을 사용
     const copyList = JSON.parse(JSON.stringify(todos));
-    // diaryList를 문자열로 변환(stringify) 후 다시 배열(parse)로 반환
-    console.log(copyList);
-    // 비교함수
+
     const compare = (a, b) => {
-      if (sortType === 'latest') {
+      if (sortTodoType === 'latest') {
         return parseInt(b.date) - parseInt(a.date);
-      } else if (sortType === 'importance') {
+      } else if (sortTodoType === 'importance') {
         return b.importance.length - a.importance.length;
       }
     };
@@ -169,12 +139,13 @@ const TodoList = () => {
     console.log('정렬후:', sortedList);
     return sortedList;
   };
+
   return (
     <TodoWrapper>
       <ControlBar>
         <ControlMenu
-          value={sortType}
-          onChange={setSortType}
+          value={sortTodoType}
+          onChange={setSortTodoType}
           optionList={optionList}
         />
         <ControlMenu
@@ -211,4 +182,4 @@ const TodoList = () => {
   );
 };
 
-export default TodoList;
+export default React.memo(TodoList);

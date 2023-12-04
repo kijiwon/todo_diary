@@ -1,13 +1,13 @@
 import { useState, useRef, useCallback } from 'react';
 import styled from 'styled-components';
-import { getStringDate } from '../util/date';
+import { getStringDate } from '../../util/date';
 import { useNavigate } from 'react-router-dom';
-import { weatherList } from '../util/weather';
-import Button from './Button';
+import { weatherList } from '../../util/weather';
+import Button from '../Button';
 import { useDispatch, useSelector } from 'react-redux';
-import WeatherItem from './WeatherItem';
-import { addDiary } from '../redux/diarySlice';
-import { COLOR } from '../style/theme';
+import WeatherItem from '../WeatherItem';
+import { addDiary } from '../../redux/diarySlice';
+import { COLOR } from '../../style/theme';
 
 const EditorWrapper = styled.div`
   width: 90%;
@@ -100,7 +100,6 @@ const DiaryEditor = () => {
       return;
     }
     dispatch(addDiary({ id: id, date, weather, content }));
-    // id.current++;
     nav('/diary', { replace: true });
   };
 

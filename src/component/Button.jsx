@@ -13,6 +13,7 @@ const ButtonWrapper = styled.button`
   font-size: 16px;
   font-weight: 600;
   text-align: center;
+  cursor: pointer;
   &:hover {
     background-color: ${(props) =>
       props.type === 'add'

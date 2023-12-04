@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SIZE, COLOR } from '../style/theme';
+import { SIZE } from '../style/theme';
 
 export const CommonContainer = styled.div`
   width: 100%;
@@ -32,24 +32,4 @@ export const CommonWrapper = styled.div`
 
 export const CommonLogo = styled.img`
   width: 80px;
-`;
-
-export const CommonSelect = styled.select`
-  width: 80px;
-  height: 30px;
-  font-size: 13px;
-  letter-spacing: 3px;
-  text-align: center;
-  border: none;
-  border-bottom: 2px solid ${COLOR.btn_blue};
-  margin-right: 24px;
-  &:focus {
-    outline: none;
-  }
-  @media (min-width: ${SIZE.tablet}) {
-    width: 100px;
-    height: 40px;
-    font-size: 16px;
-    letter-spacing: 4px;
-  }
 `;
