@@ -5,6 +5,8 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { deleteDiary } from '../../redux/diarySlice';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import Modal from '../Modal';
 
 const DiaryItemWrapper = styled.article`
   width: 100%;
@@ -78,16 +80,30 @@ const DeleteButton = styled.button`
 const DiaryItem = ({ id, date, weather, content }) => {
   const weatherData = weatherList.find((it) => it.weather_id === weather);
   const dispatch = useDispatch();
+  const [deleteDiaryItem, setDeleteDiaryItem] = useState(false);
+
   const nav = useNavigate();
+
+  const openDeleteDiaryModal = () => {
+    setDeleteDiaryItem(!deleteDiaryItem);
+  };
+
+  const handelDeleteDiary = () => {
+    dispatch(deleteDiary(id));
+    setDeleteDiaryItem(!deleteDiaryItem);
+  };
 
   return (
     <DiaryItemWrapper>
+      {deleteDiaryItem && (
+        <Modal onClick={handelDeleteDiary} setState={setDeleteDiaryItem} />
+      )}
       <WeatherInfo>{weatherData.weather_icon}</WeatherInfo>
       <DiaryInfo onClick={() => nav(`/diary/${id}`)}>
         <h1>{date}</h1>
         <p>{content.slice(0, 11)}</p>
       </DiaryInfo>
-      <DeleteButton onClick={() => dispatch(deleteDiary(id))}>
+      <DeleteButton onClick={openDeleteDiaryModal}>
         <FaTrashAlt />
       </DeleteButton>
     </DiaryItemWrapper>

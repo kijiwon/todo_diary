@@ -9,7 +9,9 @@ const ButtonWrapper = styled.button`
   background-color: ${(props) =>
     props.type === 'add' || props.type === 'edit'
       ? `${COLOR.btn_pink}`
-      : `${COLOR.btn_blue}`};
+      : props.type === 'cancel'
+        ? '#c9c9c9'
+        : `${COLOR.btn_blue}`};
   color: white;
   font-family: 'Poor Story';
   font-size: 16px;
@@ -20,7 +22,9 @@ const ButtonWrapper = styled.button`
     background-color: ${(props) =>
       props.type === 'add' || props.type === 'edit'
         ? `${COLOR.btn_pink_hover}`
-        : `${COLOR.btn_blue_hover}`};
+        : props.type === 'cancel'
+          ? '#a6a6a6'
+          : `${COLOR.btn_blue_hover}`};
   }
 
   @media (min-width: ${SIZE.tablet}) {

@@ -12,6 +12,7 @@ import { weatherList } from '../util/weather';
 import Button from '../component/Button';
 import { deleteDiary } from '../redux/diarySlice';
 import { SIZE } from '../style/theme';
+import Modal from '../component/Modal';
 
 const DiaryHeader = styled.header`
   width: 90%;
@@ -35,7 +36,7 @@ const DiaryContent = styled.section`
   width: 90%;
 
   font-family: 'Gaegu';
-  font-size: 22px;
+  font-size: 18px;
 
   @media (min-width: ${SIZE.tablet}) {
     font-size: 20px;
@@ -127,6 +128,8 @@ const ButtonWrapper = styled.div`
 const DiaryDetail = () => {
   const id = useParams();
   const [diaryData, setDiaryData] = useState([]);
+  const [isDelete, setIsDelete] = useState(false);
+
   const diaryList = useSelector((state) => state.diary.data);
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -135,8 +138,13 @@ const DiaryDetail = () => {
     (it) => parseInt(it.weather_id) === parseInt(diaryData.weather),
   );
 
+  const openDeleteModal = () => {
+    setIsDelete(!isDelete);
+  };
+
   const handleDelete = () => {
     dispatch(deleteDiary(diaryData.id));
+    setIsDelete(!isDelete);
     nav('/diary', { replace: true });
   };
 
@@ -156,6 +164,7 @@ const DiaryDetail = () => {
 
   return (
     <CommonContainer>
+      {isDelete && <Modal onClick={handleDelete} setState={setIsDelete} />}
       <CommonWrapper>
         <CommonLogo
           alt=""
@@ -182,7 +191,11 @@ const DiaryDetail = () => {
           </ContentInfo>
         </DiaryContent>
         <ButtonWrapper>
-          <Button type={'delete'} text={'삭제 하기'} onClick={handleDelete} />
+          <Button
+            type={'delete'}
+            text={'삭제 하기'}
+            onClick={openDeleteModal}
+          />
           <Button
             type={'edit'}
             text={'수정 하기'}

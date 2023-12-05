@@ -1,12 +1,10 @@
 /* eslint-disable react/no-unknown-property */
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { completeTodo, deleteTodo } from '../../redux/todoSlice';
-import { FaRegHeart, FaHeart } from 'react-icons/fa';
-import Button from '../Button';
-import { COLOR, SIZE } from '../../style/theme';
+import { SIZE } from '../../style/theme';
 import { ControlMenu } from '../ControlMenu';
+import TodoItem from './TodoItem';
 
 const TodoWrapper = styled.div`
   width: 90%;
@@ -31,65 +29,6 @@ const ControlBar = styled.div`
   }
 `;
 
-const TodoItemWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 18px;
-
-  @media (min-width: ${SIZE.tablet}) {
-    width: 80%;
-  }
-`;
-const TodoItem = styled.p`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  position: relative;
-
-  span {
-    font-size: 18px;
-    font-family: 'Poor Story';
-    color: ${(props) =>
-      props.$complete.toString() === 'true' ? '#8b8b8b' : 'black'};
-    letter-spacing: 4px;
-    &:last-child {
-      font-size: 14px;
-      margin-left: 10px;
-    }
-  }
-  @media (min-width: ${SIZE.tablet}) {
-    span {
-      font-size: 24px;
-      &:last-child {
-        font-size: 18px;
-        margin-left: 24px;
-      }
-    }
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 50%;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: ${(props) =>
-      props.$complete.toString() === 'true' ? '#8b8b8b' : 'transparent'};
-  }
-`;
-
-const CompleteButton = styled.button`
-  align-items: center;
-  border: none;
-  background-color: inherit;
-  font-size: 20px;
-  color: ${COLOR.btn_pink};
-`;
-
 const optionList = [
   {
     value: 'latest',
@@ -109,7 +48,6 @@ const filterList = [
 
 const TodoList = () => {
   const todos = useSelector((state) => state.todo.data);
-  const dispatch = useDispatch();
   const [sortTodoType, setSortTodoType] = useState('latest');
   const [filter, setFilter] = useState('all');
 
@@ -136,7 +74,6 @@ const TodoList = () => {
     const filteredList =
       filter === 'all' ? copyList : copyList.filter((it) => filterCallBack(it));
     const sortedList = filteredList.sort(compare);
-    console.log('정렬후:', sortedList);
     return sortedList;
   };
 
@@ -156,27 +93,7 @@ const TodoList = () => {
       </ControlBar>
 
       {getProcessedTodoList().map((it) => (
-        <TodoItemWrapper key={it.id}>
-          {it.complete.toString() === 'true' ? (
-            <CompleteButton onClick={() => dispatch(completeTodo(it.id))}>
-              <FaHeart />
-            </CompleteButton>
-          ) : (
-            <CompleteButton onClick={() => dispatch(completeTodo(it.id))}>
-              <FaRegHeart />
-            </CompleteButton>
-          )}
-          <TodoItem $complete={it.complete}>
-            <span>{it.text}</span>
-            <span>{it.importance}</span>
-          </TodoItem>
-
-          <Button
-            type={'delete'}
-            text={'삭제'}
-            onClick={() => dispatch(deleteTodo(it.id))}
-          />
-        </TodoItemWrapper>
+        <TodoItem key={it.id} {...it} />
       ))}
     </TodoWrapper>
   );

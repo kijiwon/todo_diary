@@ -13,7 +13,6 @@ const DiaryEdit = () => {
   const selectedDiary = diaryList.find(
     (it) => parseInt(it.id) === parseInt(id.id),
   );
-  console.log(selectedDiary);
 
   return (
     <CommonContainer>
