@@ -23,7 +23,7 @@ const MenuBarWrapper = styled.header`
   display: ${(props) => (props.size === 'desktop' ? 'none' : 'flex')};
   width: 100%;
   height: 50px;
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   flex-direction: row;
   justify-content: space-around;

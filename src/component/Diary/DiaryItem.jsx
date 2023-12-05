@@ -1,4 +1,4 @@
-import { COLOR } from '../../style/theme';
+import { COLOR, SIZE } from '../../style/theme';
 import { weatherList } from '../../util/weather';
 import styled from 'styled-components';
 import { FaTrashAlt } from 'react-icons/fa';
@@ -17,11 +17,21 @@ const DiaryItemWrapper = styled.article`
   padding: 5px;
   cursor: pointer;
   margin-bottom: 10px;
+
+  @media (min-width: ${SIZE.tablet}) {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1.5px dashed ${COLOR.bg_blue};
+  }
 `;
 
 const WeatherInfo = styled.div`
   font-size: 40px;
   padding-top: 5px;
+
+  @media (min-width: ${SIZE.tablet}) {
+    font-size: 45px;
+  }
 `;
 
 const DiaryInfo = styled.div`
@@ -38,6 +48,20 @@ const DiaryInfo = styled.div`
   p {
     font-family: 'Gaegu';
   }
+
+  @media (min-width: ${SIZE.tablet}) {
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    h1 {
+      font-size: 20px;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
 `;
 
 const DeleteButton = styled.button`
@@ -45,6 +69,10 @@ const DeleteButton = styled.button`
   background-color: inherit;
   font-size: 20px;
   cursor: pointer;
+
+  @media (min-width: ${SIZE.tablet}) {
+    font-size: 24px;
+  }
 `;
 
 const DiaryItem = ({ id, date, weather, content }) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { COLOR } from '../style/theme';
+import { COLOR, SIZE } from '../style/theme';
 
 const WeatherItemWrapper = styled.button`
   min-width: 55px;
@@ -20,6 +20,17 @@ const WeatherItemWrapper = styled.button`
       font-size: 32px;
       font-weight: bold;
       margin-bottom: 3px;
+    }
+  }
+
+  @media (min-width: ${SIZE.tablet}) {
+    height: 90px;
+
+    p {
+      font-size: 16px;
+      :first-child {
+        font-size: 40px;
+      }
     }
   }
 `;

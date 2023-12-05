@@ -7,7 +7,7 @@ import Button from '../Button';
 import { useDispatch, useSelector } from 'react-redux';
 import WeatherItem from '../WeatherItem';
 import { addDiary, editDiary } from '../../redux/diarySlice';
-import { COLOR } from '../../style/theme';
+import { COLOR, SIZE } from '../../style/theme';
 
 const EditorWrapper = styled.div`
   width: 90%;
@@ -15,6 +15,10 @@ const EditorWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  @media (min-width: ${SIZE.tablet}) {
+    width: 100%;
+  }
 `;
 
 const DiaryForm = styled.div`
@@ -24,6 +28,11 @@ const DiaryForm = styled.div`
   flex-direction: column;
   margin-top: 20px;
   margin-bottom: 20px;
+
+  @media (min-width: ${SIZE.tablet}) {
+    width: 80%;
+    font-size: 22px;
+  }
 `;
 
 const DateWrapper = styled.div`
@@ -36,6 +45,12 @@ const DateWrapper = styled.div`
     margin-top: 20px;
     margin-left: 30px;
     padding-left: 5px;
+  }
+  @media (min-width: ${SIZE.tablet}) {
+    input {
+      width: 180px;
+      font-size: 22px;
+    }
   }
 `;
 
@@ -68,6 +83,15 @@ const DiaryContentWrapper = styled.div`
       outline: none;
     }
   }
+
+  @media (min-width: ${SIZE.tablet}) {
+    textarea {
+      width: 100%;
+      letter-spacing: 2px;
+      font-size: 18px;
+      padding-left: 10px;
+    }
+  }
 `;
 
 const ButtonWrapper = styled.div`
@@ -76,6 +100,11 @@ const ButtonWrapper = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+
+  @media (min-width: ${SIZE.tablet}) {
+    width: 80%;
+    justify-content: space-between;
+  }
 `;
 
 const DiaryEditor = ({ isEdit, diaryData }) => {

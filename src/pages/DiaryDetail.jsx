@@ -11,22 +11,23 @@ import styled from 'styled-components';
 import { weatherList } from '../util/weather';
 import Button from '../component/Button';
 import { deleteDiary } from '../redux/diarySlice';
+import { SIZE } from '../style/theme';
 
 const DiaryHeader = styled.header`
   width: 90%;
-
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   margin-top: 20px;
   margin-bottom: 30px;
   font-size: 26px;
 
   h1 {
+    width: 90%;
     font-family: 'Gaegu';
-    font-size: 34px;
+    font-size: 32px;
     text-align: center;
-    margin-left: 20%;
   }
 `;
 
@@ -35,6 +36,10 @@ const DiaryContent = styled.section`
 
   font-family: 'Gaegu';
   font-size: 22px;
+
+  @media (min-width: ${SIZE.tablet}) {
+    font-size: 20px;
+  }
 `;
 
 const WeatherInfo = styled.div`
@@ -46,6 +51,14 @@ const WeatherInfo = styled.div`
   p {
     margin-right: auto;
     margin-bottom: 20px;
+  }
+
+  @media (min-width: ${SIZE.tablet}) {
+    font-size: 20px;
+    margin-bottom: 20px;
+    p {
+      margin-bottom: 10px;
+    }
   }
 `;
 
@@ -78,13 +91,22 @@ const ContentInfo = styled.div`
   align-items: start;
   p:last-child {
     width: 90%;
-    height: 150px;
+    height: 100px;
     background-color: #ececec;
     border-radius: 10px;
     padding: 10px;
     overflow-y: scroll;
     margin-top: 20px;
     margin-left: 20px;
+    word-break: break-all;
+  }
+
+  @media (min-width: ${SIZE.tablet}) {
+    p:last-child {
+      width: 100%;
+      height: 120px;
+      margin-left: 10px;
+    }
   }
 `;
 
@@ -93,7 +115,13 @@ const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 80px;
+  margin-top: 20px;
+
+  @media (min-width: ${SIZE.tablet}) {
+    width: 90%;
+    margin-top: 30px;
+    margin-left: 10px;
+  }
 `;
 
 const DiaryDetail = () => {
@@ -134,7 +162,10 @@ const DiaryDetail = () => {
           src={process.env.PUBLIC_URL + '/assets/diarylogo.png'}
         />
         <DiaryHeader>
-          <IoIosArrowBack onClick={() => nav('/diary')} />
+          <IoIosArrowBack
+            onClick={() => nav('/diary')}
+            style={{ cursor: 'pointer' }}
+          />
           <h1>{diaryData.date}</h1>
         </DiaryHeader>
         <DiaryContent>
