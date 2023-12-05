@@ -105,7 +105,7 @@ const Todo = () => {
 
   let id = useRef(0);
   const textRef = useRef();
-
+  console.log(todos);
   const date = new Date();
 
   const handleAddTodo = () => {

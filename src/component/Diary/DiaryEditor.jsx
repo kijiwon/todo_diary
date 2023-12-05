@@ -4,10 +4,11 @@ import { getStringDate } from '../../util/date';
 import { useNavigate } from 'react-router-dom';
 import { weatherList } from '../../util/weather';
 import Button from '../Button';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import WeatherItem from '../WeatherItem';
 import { addDiary, editDiary } from '../../redux/diarySlice';
 import { COLOR, SIZE } from '../../style/theme';
+import { v4 as uuidv4 } from 'uuid';
 
 const EditorWrapper = styled.div`
   width: 90%;
@@ -111,12 +112,10 @@ const DiaryEditor = ({ isEdit, diaryData }) => {
   const [date, setDate] = useState(getStringDate(new Date()));
   const [weather, setWeather] = useState(0);
   const [content, setContent] = useState('');
-  const diary = useSelector((state) => state.diary.data);
 
-  const id = diary.length;
+  const id = useRef(uuidv4());
   const dispatch = useDispatch();
   const nav = useNavigate();
-
   const contentRef = useRef();
 
   const handleClickWeather = useCallback((weather) => {
@@ -128,7 +127,7 @@ const DiaryEditor = ({ isEdit, diaryData }) => {
       contentRef.current.focus();
       return;
     }
-    dispatch(addDiary({ id: id, date, weather, content }));
+    dispatch(addDiary({ id: id.current, date, weather, content }));
     nav('/diary', { replace: true });
   };
 
