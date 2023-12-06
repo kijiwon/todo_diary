@@ -39,10 +39,10 @@ const Item = styled.p`
   }
   @media (min-width: ${SIZE.tablet}) {
     span {
-      font-size: 22px;
+      font-size: 18px;
       &:last-child {
         font-size: 18px;
-        margin-left: 24px;
+        margin-left: 10px;
       }
     }
   }
