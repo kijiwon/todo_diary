@@ -27,7 +27,7 @@ const Item = styled.p`
   position: relative;
 
   span {
-    font-size: 18px;
+    font-size: 14px;
     font-family: 'Poor Story';
     color: ${(props) =>
       props.$complete.toString() === 'true' ? '#8b8b8b' : 'black'};
