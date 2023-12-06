@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLOR } from '../style/theme';
+import { COLOR } from '../style/Theme';
 
 const ControlMenuWrapper = styled.select`
   width: 100px;

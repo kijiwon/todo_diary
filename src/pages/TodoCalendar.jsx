@@ -1,15 +1,15 @@
 import styled from 'styled-components';
-import { Calendar, momentLocalizer } from 'react-big-calendar';
-import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
 import {
   CommonContainer,
   CommonLogo,
   CommonWrapper,
 } from '../component/CommonStyle';
+import { COLOR } from '../style/Theme';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
+import moment from 'moment';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { COLOR } from '../style/theme';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 const ToolbarWrapper = styled.div`

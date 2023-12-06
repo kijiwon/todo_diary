@@ -1,15 +1,15 @@
-import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
-import { COLOR, SIZE } from '../style/theme';
-import { useDispatch, useSelector } from 'react-redux';
-import { addTodo } from '../redux/todoSlice';
-import TodoList from '../component/Todo/TodoList';
-import Button from '../component/Button';
+import { COLOR, SIZE } from '../style/Theme';
 import {
   CommonContainer,
   CommonWrapper,
   CommonLogo,
 } from '../component/CommonStyle';
+import React, { useState, useRef, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addTodo } from '../redux/todoSlice';
+import TodoList from '../component/Todo/TodoList';
+import Button from '../component/Button';
 import { v4 as uuidv4 } from 'uuid';
 
 const DateWrapper = styled.div`
@@ -130,7 +130,7 @@ const Todo = () => {
     return todoDateString === todayDateString;
   });
 
-  const handleAddTodo = () => {
+  const handleAddTodo = useCallback(() => {
     if (text.length === 0) {
       textRef.current.focus();
       return;
@@ -146,7 +146,7 @@ const Todo = () => {
 
     setText('');
     setImportance('⭐');
-  };
+  }, [text, importance, dispatch]);
 
   return (
     <CommonContainer>

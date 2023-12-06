@@ -1,6 +1,6 @@
 import styled from 'styled-components';
+import { COLOR, SIZE } from '../style/Theme';
 import Button from './Button';
-import { COLOR, SIZE } from '../style/theme';
 
 const ModalWrapper = styled.div`
   width: 80%;

@@ -1,14 +1,14 @@
-import { useState, useRef, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
-import { getStringDate } from '../../util/date';
+import { COLOR, SIZE } from '../../style/Theme';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { weatherList } from '../../util/weather';
-import Button from '../Button';
 import { useDispatch } from 'react-redux';
-import WeatherItem from '../WeatherItem';
 import { addDiary, editDiary } from '../../redux/diarySlice';
-import { COLOR, SIZE } from '../../style/theme';
+import { getStringDate } from '../../util/date';
+import { weatherList } from '../../util/weather';
 import { v4 as uuidv4 } from 'uuid';
+import WeatherItem from '../WeatherItem';
+import Button from '../Button';
 
 const EditorWrapper = styled.div`
   width: 90%;
@@ -122,23 +122,23 @@ const DiaryEditor = ({ isEdit, diaryData }) => {
     setWeather(weather);
   }, []);
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     if (content.length === 0) {
       contentRef.current.focus();
       return;
     }
     dispatch(addDiary({ id: id.current, date, weather, content }));
     nav('/diary', { replace: true });
-  };
+  }, [content, date, weather]);
 
-  const handleEdit = () => {
+  const handleEdit = useCallback(() => {
     if (content.length === 0) {
       contentRef.current.focus();
       return;
     }
     dispatch(editDiary({ id: diaryData.id, date, weather, content }));
     nav(`/diary/${diaryData.id}`, { replace: true });
-  };
+  }, [content, date, weather, diaryData]);
 
   useEffect(() => {
     if (isEdit) {

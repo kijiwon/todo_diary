@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { COLOR, SIZE } from '../style/theme';
+import { COLOR, SIZE } from '../style/Theme';
+import React from 'react';
 
 const ButtonWrapper = styled.button`
   width: 80px;
@@ -41,4 +42,4 @@ const Button = ({ type, text, onClick }) => {
   );
 };
 
-export default Button;
+export default React.memo(Button);
