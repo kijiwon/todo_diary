@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unknown-property */
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { SIZE } from '../../style/theme';
 import { ControlMenu } from '../ControlMenu';
@@ -65,11 +64,10 @@ const filterList = [
   { value: 'complete', name: '완료' },
 ];
 
-const TodoList = () => {
-  const todos = useSelector((state) => state.todo.data);
+const TodoList = ({ todos }) => {
   const [sortTodoType, setSortTodoType] = useState('latest');
   const [filter, setFilter] = useState('all');
-
+  console.log('today:', todos);
   const getProcessedTodoList = () => {
     const copyList = JSON.parse(JSON.stringify(todos));
 

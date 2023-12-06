@@ -13,9 +13,6 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 
 const DateWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
   align-items: center;
   font-size: 32px;
   font-family: 'Gaegu';
@@ -95,6 +92,10 @@ const EmptyDataWrapper = styled.div`
   @media (min-width: ${SIZE.tablet}) {
     font-size: 26px;
     margin-top: 40px;
+    img {
+      width: 200px;
+      margin-top: 30px;
+    }
   }
 `;
 
@@ -106,8 +107,28 @@ const Todo = () => {
 
   let id = uuidv4();
   const textRef = useRef();
-  console.log(todos);
+
   const date = new Date();
+  const year = date.getFullYear();
+  const month =
+    date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
+  const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+  const todayDateString = `${year}-${month}-${day}`;
+
+  const todayTodos = todos.filter((it) => {
+    const todoDate = new Date(it.date);
+    const todoYear = todoDate.getFullYear();
+    const todoMonth =
+      todoDate.getMonth() + 1 < 10
+        ? `0${todoDate.getMonth() + 1}`
+        : todoDate.getMonth() + 1;
+    const todoDay =
+      todoDate.getDate() < 10 ? `0${todoDate.getDate()}` : todoDate.getDate();
+
+    const todoDateString = `${todoYear}-${todoMonth}-${todoDay}`;
+
+    return todoDateString === todayDateString;
+  });
 
   const handleAddTodo = () => {
     if (text.length === 0) {
@@ -135,9 +156,7 @@ const Todo = () => {
           alt=""
         />
         <DateWrapper>
-          <p>{date.getFullYear()}.</p>
-          <p>{date.getMonth() + 1}.</p>
-          <p>{date.getDate()}</p>
+          <p>{todayDateString}</p>
         </DateWrapper>
         <InputWrapper>
           <input
@@ -160,8 +179,8 @@ const Todo = () => {
             onClick={() => handleAddTodo()}
           />
         </InputWrapper>
-        {todos.length !== 0 ? (
-          <TodoList />
+        {todayTodos.length !== 0 ? (
+          <TodoList todos={todayTodos} />
         ) : (
           <EmptyDataWrapper>
             <p>아직 작성된 할 일이 없어요</p>
