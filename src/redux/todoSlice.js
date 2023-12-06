@@ -10,14 +10,7 @@ const todoSlice = createSlice({
       const { id, date, text, importance } = action.payload;
       state.data.unshift({ id, date, text, importance, complete: false });
     },
-    editTodo: (state, action) => {
-      const { id, text, importance } = action.payload;
-      const todoToEdit = state.data.find((todo) => todo.id === id);
-      if (todoToEdit) {
-        todoToEdit.text = text;
-        todoToEdit.importance = importance;
-      }
-    },
+
     deleteTodo: (state, action) => {
       const selectedId = action.payload;
       state.data = state.data.filter((todo) => todo.id !== selectedId);
@@ -31,6 +24,5 @@ const todoSlice = createSlice({
   },
 });
 
-export const { addTodo, editTodo, deleteTodo, completeTodo } =
-  todoSlice.actions;
+export const { addTodo, deleteTodo, completeTodo } = todoSlice.actions;
 export default todoSlice.reducer;

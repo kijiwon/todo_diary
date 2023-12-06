@@ -5,11 +5,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Todo from './pages/Todo';
 import Diary from './pages/Diary';
-import Calendar from './pages/Calendar';
+import TodoCalendar from './pages/TodoCalendar';
 import Info from './pages/Info';
 import DiaryAdd from './pages/DiaryAdd';
 import DiaryDetail from './pages/DiaryDetail';
 import DiaryEdit from './pages/DiaryEdit';
+import TodoCalendarDetail from './pages/TodoCalendarDetail';
 
 const AppWrapper = styled.div`
   background-color: ${COLOR.bg_blue};
@@ -30,7 +31,8 @@ function App() {
           <Route path="/diary/add" element={<DiaryAdd />} />
           <Route path="/diary/:id" element={<DiaryDetail />} />
           <Route path="/diary/:id/edit" element={<DiaryEdit />} />
-          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/calendar" element={<TodoCalendar />} />
+          <Route path="/calendar/:date" element={<TodoCalendarDetail />} />
           <Route path="/info" element={<Info />} />
         </Routes>
         <MobileMenuBar size={'mobile'} />

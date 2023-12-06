@@ -10,6 +10,7 @@ import {
   CommonWrapper,
   CommonLogo,
 } from '../component/CommonStyle';
+import { v4 as uuidv4 } from 'uuid';
 
 const DateWrapper = styled.div`
   display: flex;
@@ -103,7 +104,7 @@ const Todo = () => {
   const [text, setText] = useState('');
   const [importance, setImportance] = useState('⭐');
 
-  let id = useRef(0);
+  let id = uuidv4();
   const textRef = useRef();
   console.log(todos);
   const date = new Date();
@@ -114,7 +115,7 @@ const Todo = () => {
       return;
     }
     const todoData = {
-      id: id.current,
+      id: id,
       date: date.toISOString(), // 직렬화 후 보내기
       importance,
       text,
@@ -122,7 +123,6 @@ const Todo = () => {
 
     dispatch(addTodo(todoData));
 
-    id.current++;
     setText('');
     setImportance('⭐');
   };
