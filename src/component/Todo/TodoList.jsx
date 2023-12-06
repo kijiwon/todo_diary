@@ -6,14 +6,15 @@ import { SIZE } from '../../style/theme';
 import { ControlMenu } from '../ControlMenu';
 import TodoItem from './TodoItem';
 
-const TodoWrapper = styled.div`
+const TodoListWrapper = styled.div`
   width: 90%;
+  height: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  overflow-y: scroll;
+  overflow: scroll;
   @media (min-width: ${SIZE.tablet}) {
+    width: 80%;
   }
 `;
 
@@ -25,7 +26,25 @@ const ControlBar = styled.div`
   margin-bottom: 10px;
 
   @media (min-width: ${SIZE.tablet}) {
-    width: 83%;
+    width: 85%;
+    margin-bottom: 0;
+  }
+`;
+
+const TodoItemList = styled.div`
+  width: 100%;
+  height: 80%;
+  padding-bottom: 10px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: #ccc;
+  }
+  @media (min-width: ${SIZE.tablet}) {
+    width: 80%;
   }
 `;
 
@@ -78,7 +97,7 @@ const TodoList = () => {
   };
 
   return (
-    <TodoWrapper>
+    <TodoListWrapper>
       <ControlBar>
         <ControlMenu
           value={sortTodoType}
@@ -91,11 +110,12 @@ const TodoList = () => {
           optionList={filterList}
         />
       </ControlBar>
-
-      {getProcessedTodoList().map((it) => (
-        <TodoItem key={it.id} {...it} />
-      ))}
-    </TodoWrapper>
+      <TodoItemList>
+        {getProcessedTodoList().map((it) => (
+          <TodoItem key={it.id} {...it} />
+        ))}
+      </TodoItemList>
+    </TodoListWrapper>
   );
 };
 

@@ -39,7 +39,7 @@ const InputWrapper = styled.div`
   margin-bottom: 30px;
   input {
     border-bottom: 2px solid ${COLOR.btn_blue};
-    width: 140px;
+    width: 120px;
     height: 30px;
     font-size: 18px;
     font-family: 'Poor Story';

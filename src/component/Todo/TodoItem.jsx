@@ -16,7 +16,8 @@ const TodoItemWrapper = styled.div`
   margin-bottom: 18px;
 
   @media (min-width: ${SIZE.tablet}) {
-    width: 80%;
+    width: 100%;
+    padding-top: 5px;
   }
 `;
 const Item = styled.p`
@@ -38,7 +39,7 @@ const Item = styled.p`
   }
   @media (min-width: ${SIZE.tablet}) {
     span {
-      font-size: 24px;
+      font-size: 22px;
       &:last-child {
         font-size: 18px;
         margin-left: 24px;

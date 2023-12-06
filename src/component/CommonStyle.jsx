@@ -7,6 +7,7 @@ export const CommonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 `;
 
 export const CommonWrapper = styled.div`
@@ -32,4 +33,5 @@ export const CommonWrapper = styled.div`
 
 export const CommonLogo = styled.img`
   width: 80px;
+  margin-top: 5px;
 `;

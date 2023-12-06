@@ -9,15 +9,44 @@ import {
 } from '../component/CommonStyle';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { COLOR } from '../style/theme';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+
+const ToolbarWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+
+  p {
+    margin-left: 30px;
+    margin-right: 30px;
+    font-family: 'Gaegu';
+    font-size: 25px;
+  }
+`;
+
+const CalendarButton = styled.button`
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+`;
+
+const CalendarWrapper = styled.div`
+  width: 90%;
+  height: 80%;
+  font-family: 'Gaegu';
+  font-size: 20px;
+`;
 
 moment.locale('ko-KR');
 const localizer = momentLocalizer(moment);
-
-const CalendarWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-`;
-
 const Toolbar = ({ label, onNavigate }) => {
   const handleNavigate = (action) => {
     onNavigate(action);
@@ -26,11 +55,15 @@ const Toolbar = ({ label, onNavigate }) => {
   const formatLabel = moment(label).format('YYYY년 MM월');
 
   return (
-    <div>
-      <button onClick={handleNavigate.bind(null, 'PREV')}>이전달</button>
+    <ToolbarWrapper>
+      <CalendarButton onClick={handleNavigate.bind(null, 'PREV')}>
+        <IoIosArrowBack />
+      </CalendarButton>
       <p>{formatLabel}</p>
-      <button onClick={handleNavigate.bind(null, 'NEXT')}>다음달</button>
-    </div>
+      <CalendarButton onClick={handleNavigate.bind(null, 'NEXT')}>
+        <IoIosArrowForward />
+      </CalendarButton>
+    </ToolbarWrapper>
   );
 };
 
@@ -62,10 +95,16 @@ const TodoCalendar = () => {
       allDay: true,
     }),
   );
-
+  const eventStyle = () => {
+    return {
+      style: {
+        backgroundColor: `${COLOR.bg_pink}`,
+        fontFamily: 'Poor Story',
+      },
+    };
+  };
   const handleCellClick = ({ start }) => {
     const formattedDate = moment(start).format('YYYY-MM-DD');
-    console.log(formattedDate);
     nav(`/calendar/${formattedDate}`);
   };
 
@@ -82,6 +121,7 @@ const TodoCalendar = () => {
             events={eventCountArray}
             components={{ toolbar: Toolbar }}
             onSelectEvent={handleCellClick}
+            eventPropGetter={eventStyle}
           />
         </CalendarWrapper>
       </CommonWrapper>
