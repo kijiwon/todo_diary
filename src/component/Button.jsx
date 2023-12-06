@@ -15,7 +15,7 @@ const ButtonWrapper = styled.button`
         : `${COLOR.btn_blue}`};
   color: white;
   font-family: 'Poor Story';
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 600;
   text-align: center;
   cursor: pointer;
@@ -31,6 +31,7 @@ const ButtonWrapper = styled.button`
   @media (min-width: ${SIZE.tablet}) {
     width: 120px;
     height: 40px;
+    font-size: 16px;
   }
 `;
 
