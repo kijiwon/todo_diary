@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { completeTodo, deleteTodo } from '../../redux/todoSlice';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import Button from '../Button';
-import { COLOR, SIZE } from '../../style/theme';
+import { COLOR, SIZE } from '../../style/Theme';
 import { useDispatch } from 'react-redux';
 import Modal from '../Modal';
 

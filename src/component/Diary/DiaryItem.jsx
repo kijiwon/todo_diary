@@ -1,12 +1,12 @@
-import { COLOR, SIZE } from '../../style/theme';
-import { weatherList } from '../../util/weather';
 import styled from 'styled-components';
-import { FaTrashAlt } from 'react-icons/fa';
+import { COLOR, SIZE } from '../../style/Theme';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteDiary } from '../../redux/diarySlice';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { weatherList } from '../../util/weather';
 import Modal from '../Modal';
+import { FaTrashAlt } from 'react-icons/fa';
 
 const DiaryItemWrapper = styled.article`
   width: 100%;
@@ -110,4 +110,4 @@ const DiaryItem = ({ id, date, weather, content }) => {
   );
 };
 
-export default DiaryItem;
+export default React.memo(DiaryItem);

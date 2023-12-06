@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { COLOR, SIZE } from './style/theme';
+import { COLOR, SIZE } from './style/Theme';
 import { DesktopMenuBar, MobileMenuBar } from './component/MenuBar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
 import Todo from './pages/Todo';
 import Diary from './pages/Diary';
 import TodoCalendar from './pages/TodoCalendar';

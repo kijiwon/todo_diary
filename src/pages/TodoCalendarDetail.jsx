@@ -1,14 +1,14 @@
 import styled from 'styled-components';
-import { useNavigate, useParams } from 'react-router-dom';
+import { COLOR, SIZE } from '../style/Theme';
 import {
   CommonContainer,
   CommonLogo,
   CommonWrapper,
 } from '../component/CommonStyle';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import { IoIosArrowBack } from 'react-icons/io';
-import { COLOR, SIZE } from '../style/theme';
 
 const BackButton = styled.button`
   width: fit-content;

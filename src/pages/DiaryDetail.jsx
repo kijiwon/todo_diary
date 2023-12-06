@@ -1,18 +1,18 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import styled from 'styled-components';
+import { SIZE } from '../style/Theme';
 import {
   CommonContainer,
   CommonWrapper,
   CommonLogo,
 } from '../component/CommonStyle';
 import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { IoIosArrowBack } from 'react-icons/io';
-import styled from 'styled-components';
+import { deleteDiary } from '../redux/diarySlice';
 import { weatherList } from '../util/weather';
 import Button from '../component/Button';
-import { deleteDiary } from '../redux/diarySlice';
-import { SIZE } from '../style/theme';
 import Modal from '../component/Modal';
+import { IoIosArrowBack } from 'react-icons/io';
 
 const DiaryHeader = styled.header`
   width: 90%;

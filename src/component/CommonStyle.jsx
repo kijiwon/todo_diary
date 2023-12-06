@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SIZE } from '../style/theme';
+import { SIZE } from '../style/Theme';
 
 export const CommonContainer = styled.div`
   width: 100%;

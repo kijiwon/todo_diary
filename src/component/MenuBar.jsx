@@ -1,12 +1,12 @@
 import styled, { keyframes } from 'styled-components';
-import { COLOR, SIZE } from '../style/theme';
-import { NavLink } from 'react-router-dom';
+import { COLOR, SIZE } from '../style/Theme';
 import { useState } from 'react';
-import { IoClose } from 'react-icons/io5';
-import { FiMenu } from 'react-icons/fi';
+import { NavLink } from 'react-router-dom';
 import { CiBoxList } from 'react-icons/ci';
 import { FaCalendarAlt, FaPen } from 'react-icons/fa';
+import { FiMenu } from 'react-icons/fi';
 import { IoMdFlower } from 'react-icons/io';
+import { IoClose } from 'react-icons/io5';
 
 const slideIn = keyframes`
   0% {

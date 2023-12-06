@@ -1,6 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
-import { COLOR, SIZE } from '../style/theme';
+import { COLOR, SIZE } from '../style/Theme';
+import React from 'react';
 
 const WeatherItemWrapper = styled.button`
   min-width: 55px;

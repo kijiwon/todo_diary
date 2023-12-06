@@ -1,10 +1,10 @@
+import styled from 'styled-components';
+import { COLOR, SIZE } from '../style/Theme';
 import {
   CommonContainer,
   CommonWrapper,
   CommonLogo,
 } from '../component/CommonStyle';
-import styled from 'styled-components';
-import { COLOR, SIZE } from '../style/theme';
 
 const InfoWrapper = styled.div`
   width: 100%;

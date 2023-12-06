@@ -1,9 +1,10 @@
 /* eslint-disable react/no-unknown-property */
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { SIZE } from '../../style/theme';
+import { SIZE } from '../../style/Theme';
 import { ControlMenu } from '../ControlMenu';
 import TodoItem from './TodoItem';
+import { useCallback } from 'react';
 
 const TodoListWrapper = styled.div`
   width: 90%;
@@ -69,24 +70,30 @@ const TodoList = ({ todos }) => {
   const [filter, setFilter] = useState('all');
 
   const getProcessedTodoList = () => {
-    const copyList = JSON.parse(JSON.stringify(todos));
+    const copyList = [...todos];
 
-    const compare = (a, b) => {
-      if (sortTodoType === 'latest') {
-        return parseInt(b.date) - parseInt(a.date);
-      } else if (sortTodoType === 'importance') {
-        return b.importance.length - a.importance.length;
-      }
-    };
-    const filterCallBack = (item) => {
-      if (filter === 'complete') {
-        return item.complete === true;
-      } else if (filter === 'incomplete') {
-        return item.complete === false;
-      } else {
-        return true;
-      }
-    };
+    const compare = useCallback(
+      (a, b) => {
+        if (sortTodoType === 'latest') {
+          return parseInt(b.date) - parseInt(a.date);
+        } else if (sortTodoType === 'importance') {
+          return b.importance.length - a.importance.length;
+        }
+      },
+      [sortTodoType],
+    );
+    const filterCallBack = useCallback(
+      (item) => {
+        if (filter === 'complete') {
+          return item.complete === true;
+        } else if (filter === 'incomplete') {
+          return item.complete === false;
+        } else {
+          return true;
+        }
+      },
+      [filter],
+    );
 
     const filteredList =
       filter === 'all' ? copyList : copyList.filter((it) => filterCallBack(it));

@@ -1,13 +1,13 @@
 import styled from 'styled-components';
-import { SIZE } from '../style/theme';
+import { SIZE } from '../style/Theme';
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import {
   CommonContainer,
   CommonWrapper,
   CommonLogo,
 } from '../component/CommonStyle';
-import { useSelector } from 'react-redux';
 import DiaryList from '../component/Diary/DiaryList';
 
 const DateWrapper = styled.section`
