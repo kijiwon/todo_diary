@@ -91,7 +91,7 @@ export const NavbarLink = styled(NavLink)`
   text-align: start;
   &:hover,
   &:focus,
-  &:active {
+  &.active {
     color: ${COLOR.dark_pink};
     text-decoration: dashed;
   }
