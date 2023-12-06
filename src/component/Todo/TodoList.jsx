@@ -67,7 +67,7 @@ const filterList = [
 const TodoList = ({ todos }) => {
   const [sortTodoType, setSortTodoType] = useState('latest');
   const [filter, setFilter] = useState('all');
-  console.log('today:', todos);
+
   const getProcessedTodoList = () => {
     const copyList = JSON.parse(JSON.stringify(todos));
 

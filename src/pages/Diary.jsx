@@ -79,7 +79,6 @@ const Diary = () => {
         }),
       );
     }
-    console.log(diaryList);
   }, [diaryList, curDate]);
 
   return (

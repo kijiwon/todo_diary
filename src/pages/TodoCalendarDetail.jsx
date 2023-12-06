@@ -114,7 +114,7 @@ const TodoCalendarDetail = () => {
           alt=""
           src={process.env.PUBLIC_URL + '/assets/calendarlogo.png'}
         />
-        <BackButton onClick={() => nav('/calendar', { replace: true })}>
+        <BackButton onClick={() => nav('/calendar')}>
           <IoIosArrowBack />
           뒤로가기
         </BackButton>

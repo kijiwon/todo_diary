@@ -47,12 +47,13 @@ const CalendarWrapper = styled.div`
 
 moment.locale('ko-KR');
 const localizer = momentLocalizer(moment);
+
 const Toolbar = ({ label, onNavigate }) => {
   const handleNavigate = (action) => {
     onNavigate(action);
   };
 
-  const formatLabel = moment(label).format('YYYY년 MM월');
+  const formatLabel = moment(label, 'MMMM YYYY').format('YYYY년 MM월');
 
   return (
     <ToolbarWrapper>
