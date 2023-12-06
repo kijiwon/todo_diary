@@ -107,8 +107,8 @@ const Todo = () => {
 
   let id = uuidv4();
   const textRef = useRef();
-
-  const date = new Date();
+  const offset = new Date().getTimezoneOffset() * 60000;
+  const date = new Date(Date.now() - offset);
   const year = date.getFullYear();
   const month =
     date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
@@ -135,6 +135,7 @@ const Todo = () => {
       textRef.current.focus();
       return;
     }
+
     const todoData = {
       id: id,
       date: date.toISOString(), // 직렬화 후 보내기
