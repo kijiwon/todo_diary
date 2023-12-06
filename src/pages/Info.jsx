@@ -48,7 +48,7 @@ const LinkButton = styled.button`
   border: none;
   border-radius: 10px;
   background-color: ${COLOR.bg_pink};
-  font-size: 14px;
+  font-size: 12px;
   font-family: 'Sunflower';
   font-weight: 600;
   margin-top: 10px;
