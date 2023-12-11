@@ -84,7 +84,6 @@ const TodoCalendar = () => {
   const eventCountsByDate = transformedEvents.reduce((acc, event) => {
     const dateKey = event.start.slice(0, 10);
     acc[dateKey] = (acc[dateKey] || 0) + 1;
-    console.log(dateKey);
     return acc;
   }, {});
 

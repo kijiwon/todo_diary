@@ -114,7 +114,6 @@ const Todo = () => {
     date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
   const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
   const todayDateString = `${year}-${month}-${day}`;
-  // console.log(todos);
 
   const todayTodos = todos.filter((it) => {
     const todoDate = new Date(it.date);
@@ -122,7 +121,7 @@ const Todo = () => {
 
     return todoDateString === todayDateString;
   });
-  console.log(todayTodos);
+
   const handleAddTodo = useCallback(() => {
     if (text.length === 0) {
       textRef.current.focus();
