@@ -104,7 +104,7 @@ const Todo = () => {
   const todos = useSelector((state) => state.todo.data);
   const [text, setText] = useState('');
   const [importance, setImportance] = useState('⭐');
-  console.log(todos);
+
   let id = uuidv4();
   const textRef = useRef();
   const date = new Date();
