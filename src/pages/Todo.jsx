@@ -104,11 +104,10 @@ const Todo = () => {
   const todos = useSelector((state) => state.todo.data);
   const [text, setText] = useState('');
   const [importance, setImportance] = useState('⭐');
-
+  console.log(todos);
   let id = uuidv4();
   const textRef = useRef();
-  const offset = new Date().getTimezoneOffset() * 60000;
-  const date = new Date(Date.now() - offset);
+  const date = new Date();
   const year = date.getFullYear();
   const month =
     date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
@@ -135,10 +134,11 @@ const Todo = () => {
       textRef.current.focus();
       return;
     }
-
+    const offset = new Date().getTimezoneOffset() * 60000;
+    const itemDate = new Date(Date.now() - offset);
     const todoData = {
       id: id,
-      date: date.toISOString(), // 직렬화 후 보내기
+      date: itemDate.toISOString(), // 직렬화 후 보내기
       importance,
       text,
     };
