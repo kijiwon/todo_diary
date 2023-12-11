@@ -100,6 +100,7 @@ const ContentInfo = styled.div`
     margin-top: 20px;
     margin-left: 20px;
     word-break: break-all;
+    white-space: pre-line;
   }
 
   @media (min-width: ${SIZE.tablet}) {
@@ -107,7 +108,6 @@ const ContentInfo = styled.div`
       width: 100%;
       height: 120px;
       margin-left: 10px;
-      white-space: pre-line;
     }
   }
 `;
