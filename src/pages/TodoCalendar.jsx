@@ -74,16 +74,17 @@ const TodoCalendar = () => {
   const transformedEvents = events.map((event) => ({
     id: event.id,
     title: event.text,
-    start: new Date(event.date),
-    end: new Date(event.date),
+    start: new Date(event.date).toISOString(),
+    end: new Date(event.date).toISOString(),
     allDay: true,
     importance: event.importance,
     complete: event.complete,
   }));
 
   const eventCountsByDate = transformedEvents.reduce((acc, event) => {
-    const dateKey = moment(event.start).format('YYYY-MM-DD');
+    const dateKey = event.start.slice(0, 10);
     acc[dateKey] = (acc[dateKey] || 0) + 1;
+    console.log(dateKey);
     return acc;
   }, {});
 
@@ -91,8 +92,8 @@ const TodoCalendar = () => {
     ([date, count]) => ({
       id: date,
       title: `${count}개`,
-      start: new Date(date),
-      end: new Date(date),
+      start: new Date(date).toISOString(),
+      end: new Date(date).toISOString(),
       allDay: true,
     }),
   );

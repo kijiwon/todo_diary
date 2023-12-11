@@ -104,6 +104,7 @@ const Todo = () => {
   const todos = useSelector((state) => state.todo.data);
   const [text, setText] = useState('');
   const [importance, setImportance] = useState('⭐');
+  const offset = new Date().getTimezoneOffset() * 60000;
 
   let id = uuidv4();
   const textRef = useRef();
@@ -113,28 +114,21 @@ const Todo = () => {
     date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
   const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
   const todayDateString = `${year}-${month}-${day}`;
+  // console.log(todos);
 
   const todayTodos = todos.filter((it) => {
     const todoDate = new Date(it.date);
-    const todoYear = todoDate.getFullYear();
-    const todoMonth =
-      todoDate.getMonth() + 1 < 10
-        ? `0${todoDate.getMonth() + 1}`
-        : todoDate.getMonth() + 1;
-    const todoDay =
-      todoDate.getDate() < 10 ? `0${todoDate.getDate()}` : todoDate.getDate();
-
-    const todoDateString = `${todoYear}-${todoMonth}-${todoDay}`;
+    const todoDateString = todoDate.toISOString().slice(0, 10);
 
     return todoDateString === todayDateString;
   });
-
+  console.log(todayTodos);
   const handleAddTodo = useCallback(() => {
     if (text.length === 0) {
       textRef.current.focus();
       return;
     }
-    const offset = new Date().getTimezoneOffset() * 60000;
+
     const itemDate = new Date(Date.now() - offset);
     const todoData = {
       id: id,

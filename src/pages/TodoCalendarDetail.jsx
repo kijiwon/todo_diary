@@ -101,10 +101,8 @@ const TodoCalendarDetail = () => {
   const nav = useNavigate();
   const selectedTodos = todos.filter((it) => {
     const formattedDate = it.date.slice(0, 10);
-    console.log(it.date);
     return formattedDate === date.date;
   });
-  console.log(date.date);
 
   const completedTodo = selectedTodos.filter((it) => it.complete === true);
   const uncompletedTodo = selectedTodos.filter((it) => it.complete === false);
