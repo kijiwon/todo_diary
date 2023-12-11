@@ -107,6 +107,7 @@ const ContentInfo = styled.div`
       width: 100%;
       height: 120px;
       margin-left: 10px;
+      white-space: pre-line;
     }
   }
 `;
