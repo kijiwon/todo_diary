@@ -71,18 +71,9 @@ const Toolbar = ({ label, onNavigate }) => {
 const TodoCalendar = () => {
   const events = useSelector((state) => state.todo.data);
   const nav = useNavigate();
-  const transformedEvents = events.map((event) => ({
-    id: event.id,
-    title: event.text,
-    start: new Date(event.date).toISOString(),
-    end: new Date(event.date).toISOString(),
-    allDay: true,
-    importance: event.importance,
-    complete: event.complete,
-  }));
 
-  const eventCountsByDate = transformedEvents.reduce((acc, event) => {
-    const dateKey = event.start.slice(0, 10);
+  const eventCountsByDate = events.reduce((acc, event) => {
+    const dateKey = new Date(event.date).toISOString().slice(0, 10);
     acc[dateKey] = (acc[dateKey] || 0) + 1;
     return acc;
   }, {});
