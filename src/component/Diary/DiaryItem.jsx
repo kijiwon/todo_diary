@@ -93,7 +93,6 @@ const DiaryItem = ({ id, date, weather, content }) => {
     dispatch(deleteDiary(id));
     setDeleteDiaryItem(!deleteDiaryItem);
   };
-  console.log(id);
 
   return (
     <DiaryItemWrapper>
