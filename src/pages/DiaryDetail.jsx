@@ -130,7 +130,7 @@ const DiaryDetail = () => {
   const id = useParams();
   const [diaryData, setDiaryData] = useState([]);
   const [isDelete, setIsDelete] = useState(false);
-
+  console.log(id);
   const diaryList = useSelector((state) => state.diary.data);
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -151,9 +151,7 @@ const DiaryDetail = () => {
 
   useEffect(() => {
     if (diaryList.length >= 1) {
-      const targetDiary = diaryList.find(
-        (it) => parseInt(it.id) === parseInt(id.id),
-      );
+      const targetDiary = diaryList.find((it) => it.id === id.id);
       if (targetDiary) {
         setDiaryData(targetDiary);
       } else {

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 import styled from 'styled-components';
 import { COLOR, SIZE } from './style/Theme';
 import { DesktopMenuBar, MobileMenuBar } from './component/MenuBar';
@@ -10,6 +11,7 @@ import DiaryAdd from './pages/DiaryAdd';
 import DiaryDetail from './pages/DiaryDetail';
 import DiaryEdit from './pages/DiaryEdit';
 import TodoCalendarDetail from './pages/TodoCalendarDetail';
+import { ScrollToTop } from './component/ScrollToTop';
 
 const AppWrapper = styled.div`
   background-color: ${COLOR.bg_blue};
@@ -22,6 +24,7 @@ const AppWrapper = styled.div`
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <AppWrapper>
         <DesktopMenuBar size={'desktop'} />
         <Routes>

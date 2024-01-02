@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 import styled from 'styled-components';
 import { SIZE } from '../style/Theme';
 import React, { useState, useEffect } from 'react';
