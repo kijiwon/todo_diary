@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 import styled from 'styled-components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

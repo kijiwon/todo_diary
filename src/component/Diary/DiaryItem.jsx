@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 import styled from 'styled-components';
 import { COLOR, SIZE } from '../../style/Theme';
 import React, { useState } from 'react';
@@ -92,6 +93,7 @@ const DiaryItem = ({ id, date, weather, content }) => {
     dispatch(deleteDiary(id));
     setDeleteDiaryItem(!deleteDiaryItem);
   };
+  console.log(id);
 
   return (
     <DiaryItemWrapper>
