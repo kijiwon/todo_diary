@@ -9,7 +9,16 @@
 `화면 정의` : 🔗[투두 다이어리 피그마](https://www.figma.com/file/9kOpBSI2ulF0QwT38IP9Cu/%ED%88%AC%EB%91%90%EB%A6%AC%EC%8A%A4%ED%8A%B8?type=design&node-id=0%3A1&mode=design&t=Q6mARBMqOytVYYKR-1)<br>
 
 <br><br>
+## 🌿 프로젝트 소개
+이전에 제작했던 투두 리스트 웹에 다이어리 기능을 추가한 웹 애플리케이션이다.<br/>
+투두는 하루 동안 할 일을 중요도와 함께 표시하고 완료가 된 항목과 미완료된 항목을 구분해 볼 수 있다.
+하루가 지나면 전날에 작성된 투두를 수정하거나 삭제할 수 없고 캘린더 페이지에서 일자별로 작성된 투두 리스트를 볼 수 있다.<br/>
+다이어리는 날씨 이미지, 작성된 날짜, 일기 미리보기를 표시해 사용자가 상세 페이지에 들어가지 않아도 일기에 대한 정보를 얻을 수 있다.<br/>
+투두와 다이어리는 모두 localStorage에 저장되어 새로고침을 하거나 창을 나갔다 들어와도 데이터가 유지된다.<br/>
+미디어쿼리를 사용해 모바일과 pc 환경에 맞게 디자인을 설정했다.
 
+
+<br/><br/>
 ## 🛠️ Stacks
 <div>
     <img src="https://img.shields.io/badge/html5-E34F26?style=flat-square&logo=html5&logoColor=white"/>
