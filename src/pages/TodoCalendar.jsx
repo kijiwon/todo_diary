@@ -74,7 +74,6 @@ const TodoCalendar = () => {
 
   const eventCountsByDate = events.reduce((acc, event) => {
     const dateKey = new Date(event.date).toISOString().slice(0, 10);
-    console.log(event.date);
     acc[dateKey] = (acc[dateKey] || 0) + 1;
     return acc;
   }, {});
@@ -85,9 +84,10 @@ const TodoCalendar = () => {
       title: `${count}개`,
       start: new Date(date).toISOString(),
       end: new Date(date).toISOString(),
-      allDay: true,
+      allDay: false,
     }),
   );
+
   const eventStyle = () => {
     return {
       style: {
@@ -96,9 +96,9 @@ const TodoCalendar = () => {
       },
     };
   };
-  const handleCellClick = ({ start }) => {
-    const formattedDate = new Date(start).toISOString().slice(0, 10);
-    nav(`/calendar/${formattedDate}`);
+
+  const handleCellClick = ({ id }) => {
+    nav(`/calendar/${id}`);
   };
 
   return (
