@@ -112,6 +112,7 @@ const TodoCalendar = () => {
           <Calendar
             localizer={localizer}
             events={eventCountArray}
+            view="month"
             components={{ toolbar: Toolbar }}
             onSelectEvent={handleCellClick}
             eventPropGetter={eventStyle}
