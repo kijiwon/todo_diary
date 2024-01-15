@@ -76,15 +76,56 @@ const Toolbar = ({ label, onNavigate, setYear, setMonth }) => {
 };
 
 const TodoCalendar = () => {
-  const formattedMonth =
-    new Date().getMonth() + 1 < 9
-      ? '0' + (new Date().getMonth() + 1)
-      : (new Date().getMonth() + 1).toString();
-  const [year, setYear] = useState(new Date().getFullYear());
-  const [month, setMonth] = useState(formattedMonth);
+  const currentDate = new Date();
+  const formatMonth = (currentmonth) => {
+    return currentmonth < 9 ? '0' + currentmonth : currentmonth.toString();
+  };
+  const initialYear = currentDate.getFullYear();
+  const initialMonth = formatMonth(currentDate.getMonth() + 1);
+  const [year, setYear] = useState(initialYear);
+  const [month, setMonth] = useState(initialMonth);
   const [holiday, setHoliday] = useState([]);
   const events = useSelector((state) => state.todo.data);
   const nav = useNavigate();
+
+  const getHoliday = (year, month) => {
+    axios
+      .get(
+        `https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo?serviceKey=${process.env.REACT_APP_API_KEY}%3D&solYear=${year}&solMonth=${month}`,
+      )
+      .then((response) => {
+        const data = response.data.response.body.items.item;
+        if (data.length !== 0) {
+          if (Array.isArray(data)) {
+            setHoliday(data);
+          } else {
+            setHoliday([data]);
+          }
+        } else {
+          setHoliday([]);
+        }
+      })
+      .catch((error) => {
+        console.log('오류가 발생했습니다.', error);
+      });
+  };
+
+  const holidayEvent = holiday.map((it) => {
+    return {
+      id: it.locdate,
+      title: it.dateName,
+      start: new Date(
+        it.locdate.toString().slice(0, 4),
+        it.locdate.toString().slice(4, 6) - 1,
+        it.locdate.toString().slice(6),
+      ),
+      end: new Date(
+        it.locdate.toString().slice(0, 4),
+        it.locdate.toString().slice(4, 6) - 1,
+        it.locdate.toString().slice(6),
+      ),
+    };
+  });
 
   const eventCountsByDate = events.reduce((acc, event) => {
     const dateKey = new Date(event.date).toISOString().slice(0, 10);
@@ -102,6 +143,8 @@ const TodoCalendar = () => {
     }),
   );
 
+  const mergedEvents = [...holidayEvent, ...eventCountArray];
+
   const eventStyle = () => {
     return {
       style: {
@@ -115,25 +158,14 @@ const TodoCalendar = () => {
     nav(`/calendar/${id}`);
   };
 
-  const getHoliday = (month) => {
-    console.log('받은 month:', month);
-    axios
-      .get(
-        `https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo?serviceKey=${process.env.REACT_APP_API_KEY}%3D&solYear=${year}&solMonth=${month}`,
-      )
-      .then((response) => {
-        setHoliday(response.data.response.body.items);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   useEffect(() => {
-    console.log('바뀐 month:', month);
-    getHoliday(month);
-    console.log(holiday);
-  }, [month]);
+    getHoliday(year, month);
+  }, [year, month]);
+
+  // useEffect(() => {
+  //   console.log(`${month}월 공휴일:`, holiday);
+  //   console.log(holidayEvent);
+  // }, [holiday]);
 
   return (
     <CommonContainer>
@@ -145,7 +177,7 @@ const TodoCalendar = () => {
         <CalendarWrapper>
           <Calendar
             localizer={localizer}
-            events={eventCountArray}
+            events={mergedEvents}
             views={['month']}
             defaultView="month"
             components={{
