@@ -61,9 +61,10 @@ const InputWrapper = styled.div`
     }
   }
   @media screen and (min-width: ${SIZE.tablet}) {
+    width: 90%;
     justify-content: center;
     input {
-      width: 180px;
+      width: 40%;
       height: 40px;
       font-size: 20px;
     }

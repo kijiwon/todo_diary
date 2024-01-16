@@ -147,7 +147,11 @@ const TodoCalendar = () => {
   const holidayEvent = holiday.map((it) => {
     return {
       id: it.locdate,
-      title: <HolidayText>{it.dateName}</HolidayText>,
+      title: (
+        <HolidayText>
+          {it.dateName === '1월1일' ? '신정' : it.dateName}
+        </HolidayText>
+      ),
       start: new Date(
         it.locdate.toString().slice(0, 4),
         it.locdate.toString().slice(4, 6) - 1,
@@ -175,8 +179,8 @@ const TodoCalendar = () => {
           <p>{count}개</p>
         </TodoEventButton>
       ),
-      start: new Date(date).toISOString(),
-      end: new Date(date).toISOString(),
+      start: new Date(date),
+      end: new Date(date),
       allDay: false,
     }),
   );
@@ -194,14 +198,13 @@ const TodoCalendar = () => {
   };
 
   useEffect(() => {
-    console.log('페이지 첫 렌더링');
     setYear(new Date().getFullYear());
     setMonth(formattedMonth);
-    getHoliday(year, month);
   }, []);
 
   useEffect(() => {
     getHoliday(year, month);
+    console.log(holiday);
   }, [year, month]);
 
   return (
