@@ -179,8 +179,8 @@ const TodoCalendar = () => {
           <p>{count}개</p>
         </TodoEventButton>
       ),
-      start: new Date(date).toISOString(),
-      end: new Date(date).toISOString(),
+      start: new Date(date),
+      end: new Date(date),
       allDay: false,
     }),
   );
