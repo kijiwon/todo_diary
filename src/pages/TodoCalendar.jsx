@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 import styled from 'styled-components';
 import {
   CommonContainer,
@@ -14,6 +15,8 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+moment.locale('ko-KR');
+const localizer = momentLocalizer(moment);
 const ToolbarWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -47,8 +50,27 @@ const CalendarWrapper = styled.div`
   font-size: 20px;
 `;
 
-moment.locale('ko-KR');
-const localizer = momentLocalizer(moment);
+const HolidayText = styled.p`
+  font-size: 15px;
+  font-family: 'Gaegu';
+  font-weight: 700;
+  color: #e13a37;
+  margin-right: 2px;
+  cursor: default;
+`;
+
+const TodoEventButton = styled.button`
+  width: 100%;
+  height: 30px;
+  background-color: ${COLOR.bg_pink};
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Poor Story';
+  letter-spacing: 2px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+`;
 
 const Toolbar = ({ label, onNavigate, setYear, setMonth }) => {
   const formatLabel = moment(label, 'MMMM YYYY').format('YYYY년 MM월');
@@ -76,22 +98,20 @@ const Toolbar = ({ label, onNavigate, setYear, setMonth }) => {
 };
 
 const TodoCalendar = () => {
-  const currentDate = new Date();
-  const formatMonth = (currentmonth) => {
-    return currentmonth < 9 ? '0' + currentmonth : currentmonth.toString();
-  };
-  const initialYear = currentDate.getFullYear();
-  const initialMonth = formatMonth(currentDate.getMonth() + 1);
-  const [year, setYear] = useState(initialYear);
-  const [month, setMonth] = useState(initialMonth);
-  const [holiday, setHoliday] = useState([]);
+  const formattedMonth =
+    new Date().getMonth() + 1 > 9
+      ? new Date().getMonth() + 1
+      : '0' + (new Date().getMonth() + 1);
+  const [year, setYear] = useState(new Date().getFullYear());
+  const [month, setMonth] = useState(formattedMonth);
+  const [holiday, setHoliday] = useState(null || []);
   const events = useSelector((state) => state.todo.data);
   const nav = useNavigate();
 
   const getHoliday = (year, month) => {
     axios
       .get(
-        `https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo?serviceKey=${process.env.REACT_APP_API_KEY}%3D&solYear=${year}&solMonth=${month}`,
+        `https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getHoliDeInfo?serviceKey=${process.env.REACT_APP_API_KEY}&solYear=${year}&solMonth=${month}`,
       )
       .then((response) => {
         const data = response.data.response.body.items.item;
@@ -106,14 +126,18 @@ const TodoCalendar = () => {
         }
       })
       .catch((error) => {
-        console.log('오류가 발생했습니다.', error);
+        console.log('해당 월에는 공휴일이 없습니다.->', error);
       });
+  };
+
+  const handleCellClick = (date) => {
+    nav(`/calendar/${date}`);
   };
 
   const holidayEvent = holiday.map((it) => {
     return {
       id: it.locdate,
-      title: it.dateName,
+      title: <HolidayText>{it.dateName}</HolidayText>,
       start: new Date(
         it.locdate.toString().slice(0, 4),
         it.locdate.toString().slice(4, 6) - 1,
@@ -136,7 +160,11 @@ const TodoCalendar = () => {
   const eventCountArray = Object.entries(eventCountsByDate).map(
     ([date, count]) => ({
       id: date,
-      title: `${count}개`,
+      title: (
+        <TodoEventButton onClick={() => handleCellClick(date)}>
+          <p>{count}개</p>
+        </TodoEventButton>
+      ),
       start: new Date(date).toISOString(),
       end: new Date(date).toISOString(),
       allDay: false,
@@ -148,24 +176,16 @@ const TodoCalendar = () => {
   const eventStyle = () => {
     return {
       style: {
-        backgroundColor: `${COLOR.bg_pink}`,
-        fontFamily: 'Poor Story',
+        backgroundColor: `inherit`,
+        textAlign: 'end',
+        padding: '0',
       },
     };
-  };
-
-  const handleCellClick = ({ id }) => {
-    nav(`/calendar/${id}`);
   };
 
   useEffect(() => {
     getHoliday(year, month);
   }, [year, month]);
-
-  // useEffect(() => {
-  //   console.log(`${month}월 공휴일:`, holiday);
-  //   console.log(holidayEvent);
-  // }, [holiday]);
 
   return (
     <CommonContainer>
@@ -185,7 +205,6 @@ const TodoCalendar = () => {
                 <Toolbar {...props} setYear={setYear} setMonth={setMonth} />
               ),
             }}
-            onSelectEvent={handleCellClick}
             eventPropGetter={eventStyle}
           />
         </CalendarWrapper>
