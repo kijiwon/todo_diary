@@ -21,7 +21,7 @@ const ProfileImg = styled.img`
   border: 4px double ${COLOR.bg_blue};
   border-radius: 50%;
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     width: 20%;
   }
 `;
@@ -37,7 +37,7 @@ const LinkWrapper = styled.div`
     margin-bottom: 20px;
   }
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     font-size: 24px;
   }
 `;
@@ -58,7 +58,7 @@ const LinkButton = styled.button`
     background-color: ${COLOR.btn_pink_hover};
   }
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     height: 40px;
   }
 `;

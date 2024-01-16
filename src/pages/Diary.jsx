@@ -1,6 +1,5 @@
 /* eslint-disable import/no-named-as-default */
 import styled from 'styled-components';
-import { SIZE } from '../style/Theme';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
@@ -28,9 +27,6 @@ const DateWrapper = styled.section`
     display: flex;
     align-items: center;
     cursor: pointer;
-  }
-
-  @media (min-width: ${SIZE.tablet}) {
   }
 `;
 

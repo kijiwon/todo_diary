@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 import styled from 'styled-components';
 import { COLOR, SIZE } from '../style/Theme';
 import {
@@ -20,7 +21,7 @@ const DateWrapper = styled.div`
   margin-top: 20px;
   margin-bottom: 30px;
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     font-size: 40px;
     letter-spacing: 10px;
     margin-bottom: 45px;
@@ -38,7 +39,7 @@ const InputWrapper = styled.div`
     border-bottom: 2px solid ${COLOR.btn_blue};
     width: 120px;
     height: 30px;
-    font-size: 18px;
+    font-size: 16px;
     font-family: 'Poor Story';
     letter-spacing: 2px;
     padding: 0 0 0 10px;
@@ -59,12 +60,12 @@ const InputWrapper = styled.div`
       outline: none;
     }
   }
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     justify-content: center;
     input {
       width: 180px;
       height: 40px;
-      font-size: 22px;
+      font-size: 20px;
     }
     select {
       width: 100px;
@@ -89,7 +90,7 @@ const EmptyDataWrapper = styled.div`
     margin-top: 60px;
   }
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     font-size: 26px;
     margin-top: 40px;
     img {

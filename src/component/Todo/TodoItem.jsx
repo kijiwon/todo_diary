@@ -16,7 +16,7 @@ const TodoItemWrapper = styled.div`
   align-items: center;
   margin-bottom: 18px;
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     width: 100%;
     padding-top: 5px;
   }
@@ -29,18 +29,19 @@ const Item = styled.p`
 
   span {
     font-size: 14px;
-    font-family: 'Poor Story';
+    font-family: 'SunFlower';
     color: ${(props) =>
       props.$complete.toString() === 'true' ? '#8b8b8b' : 'black'};
     letter-spacing: 4px;
+    line-height: 1.3;
     &:last-child {
       font-size: 14px;
       margin-left: 10px;
     }
   }
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     span {
-      font-size: 18px;
+      font-size: 16px;
       &:last-child {
         font-size: 18px;
         margin-left: 10px;

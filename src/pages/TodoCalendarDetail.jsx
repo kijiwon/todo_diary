@@ -23,7 +23,7 @@ const BackButton = styled.button`
   margin-left: 10px;
   cursor: pointer;
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     margin-left: 20px;
   }
 `;
@@ -34,7 +34,7 @@ const SelectedTodoWrapper = styled.div`
   margin-top: 30px;
 
   font-family: 'Poor Story';
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     display: flex;
     flex-direction: row;
   }
@@ -42,7 +42,7 @@ const SelectedTodoWrapper = styled.div`
 
 const SelectedItemWrapper = styled.div`
   height: 50%;
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     width: 50%;
     height: 100%;
     display: flex;
@@ -58,7 +58,7 @@ const TodoTitle = styled.p`
   border-radius: 5px;
   padding: 5px;
   margin-bottom: 10px;
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     font-size: 22px;
     margin-bottom: 25px;
   }
@@ -90,7 +90,7 @@ const SelectedTodoItem = styled.div`
     margin-left: 14px;
   }
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     font-size: 20px;
   }
 `;

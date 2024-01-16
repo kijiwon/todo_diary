@@ -23,7 +23,7 @@ const WeatherItemWrapper = styled.button`
     }
   }
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     height: 90px;
 
     p {
