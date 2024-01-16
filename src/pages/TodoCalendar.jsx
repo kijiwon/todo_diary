@@ -194,10 +194,8 @@ const TodoCalendar = () => {
   };
 
   useEffect(() => {
-    console.log('페이지 첫 렌더링');
     setYear(new Date().getFullYear());
     setMonth(formattedMonth);
-    getHoliday(year, month);
   }, []);
 
   useEffect(() => {
