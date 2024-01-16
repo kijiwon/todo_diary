@@ -12,7 +12,7 @@ const TodoListWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   overflow: scroll;
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     width: 80%;
   }
 `;
@@ -24,7 +24,7 @@ const ControlBar = styled.div`
   justify-content: end;
   margin-bottom: 10px;
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     width: 85%;
     margin-bottom: 0;
   }
@@ -42,7 +42,7 @@ const TodoItemList = styled.div`
     border-radius: 2px;
     background: #ccc;
   }
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     width: 80%;
   }
 `;

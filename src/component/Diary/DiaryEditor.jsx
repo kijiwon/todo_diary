@@ -17,7 +17,7 @@ const EditorWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     width: 100%;
   }
 `;
@@ -30,7 +30,7 @@ const DiaryForm = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     width: 80%;
     font-size: 22px;
   }
@@ -47,7 +47,7 @@ const DateWrapper = styled.div`
     margin-left: 30px;
     padding-left: 5px;
   }
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     input {
       width: 180px;
       font-size: 22px;
@@ -85,7 +85,7 @@ const DiaryContentWrapper = styled.div`
     }
   }
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     textarea {
       width: 100%;
       letter-spacing: 2px;
@@ -102,7 +102,7 @@ const ButtonWrapper = styled.div`
   justify-content: space-around;
   align-items: center;
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     width: 80%;
     justify-content: space-between;
   }

@@ -5,7 +5,7 @@ import {
   CommonLogo,
   CommonWrapper,
 } from '../component/CommonStyle';
-import { COLOR } from '../style/Theme';
+import { COLOR, SIZE } from '../style/Theme';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -51,25 +51,35 @@ const CalendarWrapper = styled.div`
 `;
 
 const HolidayText = styled.p`
-  font-size: 15px;
+  font-size: 0.7em;
   font-family: 'Gaegu';
   font-weight: 700;
   color: #e13a37;
+  margin-top: 2px;
   margin-right: 2px;
   cursor: default;
+  @media screen and (min-width: ${SIZE.tablet}) {
+    font-size: 15px;
+  }
 `;
 
 const TodoEventButton = styled.button`
   width: 100%;
   height: 30px;
   background-color: ${COLOR.bg_pink};
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 0.9em;
+  font-weight: bold;
   font-family: 'Poor Story';
-  letter-spacing: 2px;
+  text-align: center;
   border: none;
   border-radius: 8px;
   cursor: pointer;
+
+  @media screen and (min-width: ${SIZE.tablet}) {
+    height: 30px;
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
 `;
 
 const Toolbar = ({ label, onNavigate, setYear, setMonth }) => {
@@ -102,9 +112,9 @@ const TodoCalendar = () => {
     new Date().getMonth() + 1 > 9
       ? new Date().getMonth() + 1
       : '0' + (new Date().getMonth() + 1);
-  const [year, setYear] = useState(new Date().getFullYear());
-  const [month, setMonth] = useState(formattedMonth);
-  const [holiday, setHoliday] = useState(null || []);
+  const [year, setYear] = useState('');
+  const [month, setMonth] = useState('');
+  const [holiday, setHoliday] = useState([]);
   const events = useSelector((state) => state.todo.data);
   const nav = useNavigate();
 
@@ -182,6 +192,13 @@ const TodoCalendar = () => {
       },
     };
   };
+
+  useEffect(() => {
+    console.log('페이지 첫 렌더링');
+    setYear(new Date().getFullYear());
+    setMonth(formattedMonth);
+    getHoliday(year, month);
+  }, []);
 
   useEffect(() => {
     getHoliday(year, month);

@@ -38,7 +38,7 @@ const DiaryContent = styled.section`
   font-family: 'Gaegu';
   font-size: 18px;
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     font-size: 20px;
   }
 `;
@@ -54,7 +54,7 @@ const WeatherInfo = styled.div`
     margin-bottom: 20px;
   }
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     font-size: 20px;
     margin-bottom: 20px;
     p {
@@ -103,7 +103,7 @@ const ContentInfo = styled.div`
     white-space: pre-line;
   }
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     p:last-child {
       width: 100%;
       height: 120px;
@@ -119,7 +119,7 @@ const ButtonWrapper = styled.div`
   justify-content: space-between;
   margin-top: 20px;
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     width: 90%;
     margin-top: 30px;
     margin-left: 10px;

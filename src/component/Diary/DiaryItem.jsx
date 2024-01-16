@@ -21,7 +21,7 @@ const DiaryItemWrapper = styled.article`
   cursor: pointer;
   margin-bottom: 10px;
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     border: none;
     border-radius: 0;
     border-bottom: 1.5px dashed ${COLOR.bg_blue};
@@ -32,7 +32,7 @@ const WeatherInfo = styled.div`
   font-size: 40px;
   padding-top: 5px;
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     font-size: 45px;
   }
 `;
@@ -52,7 +52,7 @@ const DiaryInfo = styled.div`
     font-family: 'Gaegu';
   }
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     text-align: center;
     display: flex;
     justify-content: space-around;
@@ -73,7 +73,7 @@ const DeleteButton = styled.button`
   font-size: 20px;
   cursor: pointer;
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     font-size: 24px;
   }
 `;

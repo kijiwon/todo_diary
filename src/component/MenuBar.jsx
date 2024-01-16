@@ -10,7 +10,7 @@ import { IoClose } from 'react-icons/io5';
 
 const slideIn = keyframes`
   0% {
-    transform: translateX(-20%);
+    transform: translateX(-50%);
   }
   100% {
     transform: translateX(0);
@@ -28,8 +28,8 @@ const MenuBarWrapper = styled.header`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-
-  @media (min-width: ${SIZE.tablet}) {
+  z-index: 1000000;
+  @media screen and (min-width: ${SIZE.tablet}) {
     display: ${(props) => (props.size === 'mobile' ? 'none' : 'flex')};
     width: 80px;
     height: 100vh;

@@ -22,7 +22,7 @@ export const CommonWrapper = styled.div`
   align-items: center;
   background-color: #fff;
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     width: 670px;
     height: 90vh;
     margin-left: 80px;

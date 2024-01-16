@@ -28,7 +28,7 @@ const ButtonWrapper = styled.button`
           : `${COLOR.btn_blue_hover}`};
   }
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     width: 120px;
     height: 40px;
     font-size: 16px;

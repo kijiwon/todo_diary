@@ -21,7 +21,7 @@ const ModalWrapper = styled.div`
     margin-bottom: 30px;
   }
 
-  @media (min-width: ${SIZE.tablet}) {
+  @media screen and (min-width: ${SIZE.tablet}) {
     width: 400px;
     height: 200px;
     top: 200px;
