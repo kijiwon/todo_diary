@@ -3,7 +3,7 @@ import { COLOR, SIZE } from '../style/Theme';
 import React from 'react';
 
 const ButtonWrapper = styled.button`
-  width: 80px;
+  width: 80px !important;
   height: 30px;
   border: none;
   border-radius: 10px;
@@ -29,7 +29,7 @@ const ButtonWrapper = styled.button`
   }
 
   @media screen and (min-width: ${SIZE.tablet}) {
-    width: 120px;
+    width: 120px !important;
     height: 40px;
     font-size: 16px;
   }

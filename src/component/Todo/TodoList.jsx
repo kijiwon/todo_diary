@@ -13,7 +13,7 @@ const TodoListWrapper = styled.div`
   align-items: center;
   overflow: scroll;
   @media screen and (min-width: ${SIZE.tablet}) {
-    width: 80%;
+    width: 90%;
   }
 `;
 
@@ -25,7 +25,7 @@ const ControlBar = styled.div`
   margin-bottom: 10px;
 
   @media screen and (min-width: ${SIZE.tablet}) {
-    width: 85%;
+    width: 95%;
     margin-bottom: 0;
   }
 `;
@@ -43,7 +43,7 @@ const TodoItemList = styled.div`
     background: #ccc;
   }
   @media screen and (min-width: ${SIZE.tablet}) {
-    width: 80%;
+    width: 95%;
   }
 `;
 

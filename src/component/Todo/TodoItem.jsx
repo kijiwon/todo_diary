@@ -26,20 +26,23 @@ const Item = styled.p`
   flex-direction: row;
   align-items: center;
   position: relative;
-
+  margin-left: 5px;
+  white-space: pre-wrap;
   span {
     font-size: 14px;
     font-family: 'SunFlower';
     color: ${(props) =>
       props.$complete.toString() === 'true' ? '#8b8b8b' : 'black'};
     letter-spacing: 4px;
-    line-height: 1.3;
+    line-height: 1.5;
+
     &:last-child {
       font-size: 14px;
       margin-left: 10px;
     }
   }
   @media screen and (min-width: ${SIZE.tablet}) {
+    margin-left: 10px;
     span {
       font-size: 16px;
       &:last-child {
