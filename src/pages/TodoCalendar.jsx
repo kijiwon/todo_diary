@@ -12,7 +12,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 
 moment.locale('ko-KR');
@@ -118,27 +118,30 @@ const TodoCalendar = () => {
   const events = useSelector((state) => state.todo.data);
   const nav = useNavigate();
 
-  const getHoliday = (year, month) => {
-    axios
-      .get(
-        `https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getHoliDeInfo?serviceKey=${process.env.REACT_APP_API_KEY}&solYear=${year}&solMonth=${month}`,
-      )
-      .then((response) => {
-        const data = response.data.response.body.items.item;
-        if (data.length !== 0) {
-          if (Array.isArray(data)) {
-            setHoliday(data);
+  const getHoliday = useCallback(
+    (year, month) => {
+      axios
+        .get(
+          `https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getHoliDeInfo?serviceKey=${process.env.REACT_APP_API_KEY}&solYear=${year}&solMonth=${month}`,
+        )
+        .then((response) => {
+          const data = response.data.response.body.items.item;
+          if (data.length !== 0) {
+            if (Array.isArray(data)) {
+              setHoliday(data);
+            } else {
+              setHoliday([data]);
+            }
           } else {
-            setHoliday([data]);
+            setHoliday([]);
           }
-        } else {
-          setHoliday([]);
-        }
-      })
-      .catch((error) => {
-        console.log('해당 월에는 공휴일이 없습니다.->', error);
-      });
-  };
+        })
+        .catch((error) => {
+          console.log('해당 월에는 공휴일이 없습니다.->', error);
+        });
+    },
+    [month, year],
+  );
 
   const handleCellClick = (date) => {
     nav(`/calendar/${date}`);
@@ -204,7 +207,6 @@ const TodoCalendar = () => {
 
   useEffect(() => {
     getHoliday(year, month);
-    console.log(holiday);
   }, [year, month]);
 
   return (
