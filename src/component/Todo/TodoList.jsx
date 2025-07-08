@@ -81,6 +81,7 @@ const TodoList = ({ todos }) => {
       },
       [sortTodoType],
     );
+
     const filterCallBack = useCallback(
       (item) => {
         if (filter === 'complete') {

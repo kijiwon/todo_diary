@@ -118,9 +118,12 @@ const DiaryEditor = ({ isEdit, diaryData }) => {
   const nav = useNavigate();
   const contentRef = useRef();
 
-  const handleClickWeather = useCallback((weather) => {
-    setWeather(weather);
-  }, []);
+  const handleClickWeather = useCallback(
+    (weather) => {
+      setWeather(weather);
+    },
+    [weather],
+  );
 
   const handleSubmit = useCallback(() => {
     if (content.length === 0) {
