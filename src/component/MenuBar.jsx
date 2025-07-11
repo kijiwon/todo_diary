@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import { styled, keyframes } from 'styled-components';
 import { COLOR, SIZE } from '../style/Theme';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
@@ -10,10 +10,18 @@ import { IoClose } from 'react-icons/io5';
 
 const slideIn = keyframes`
   0% {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
   }
   100% {
     transform: translateX(0);
+  }
+`;
+const slideOut = keyframes`
+    0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200%);
   }
 `;
 
@@ -56,9 +64,12 @@ const SideBarWrapper = styled.div`
   align-items: start;
   position: fixed;
   background-color: ${COLOR.bg_pink};
+
   margin-left: 80px;
   text-align: start;
-  animation: ${slideIn} 0.3s ease-in-out;
+  animation: ${(props) => (props.$isAnimated === 'true' ? slideIn : slideOut)}
+    0.3s ease-in-out;
+
   font-size: 33px;
   z-index: 1000;
 `;
@@ -99,9 +110,18 @@ export const NavbarLink = styled(NavLink)`
 
 export const DesktopMenuBar = (props) => {
   const [openMenu, setOpenMenu] = useState(false);
+  const [isAnimated, setIsAnimated] = useState(false);
 
   const handleOpenSideBar = () => {
-    setOpenMenu(!openMenu);
+    if (!openMenu && !isAnimated) {
+      setIsAnimated(true);
+      setOpenMenu(true);
+    } else {
+      setIsAnimated(false);
+      setTimeout(() => {
+        setOpenMenu(false);
+      }, 300);
+    }
   };
 
   return (
@@ -121,7 +141,10 @@ export const DesktopMenuBar = (props) => {
           <IoMdFlower style={{ fontSize: '30px' }} />
         </IconWrapper>
       </MenuBarWrapper>
-      <SideBarWrapper $opened={openMenu.toString()}>
+      <SideBarWrapper
+        $opened={openMenu.toString()}
+        $isAnimated={isAnimated.toString()}
+      >
         <NavWrapper>
           <NavbarLink to={'/'} onClick={handleOpenSideBar}>
             투두

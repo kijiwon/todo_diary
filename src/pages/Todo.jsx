@@ -6,7 +6,7 @@ import {
   CommonWrapper,
   CommonLogo,
 } from '../component/CommonStyle';
-import React, { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTodo } from '../redux/todoSlice';
 import TodoList from '../component/Todo/TodoList';
@@ -142,7 +142,7 @@ const Todo = () => {
 
     setText('');
     setImportance('⭐');
-  }, [text, importance, dispatch]);
+  }, [text, importance]);
 
   return (
     <CommonContainer>
@@ -191,4 +191,4 @@ const Todo = () => {
   );
 };
 
-export default React.memo(Todo);
+export default Todo;
