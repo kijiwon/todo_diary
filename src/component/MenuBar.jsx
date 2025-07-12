@@ -127,7 +127,11 @@ export const DesktopMenuBar = (props) => {
   return (
     <>
       <MenuBarWrapper size={props.size} $opened={openMenu.toString()}>
-        <MenuButton onClick={handleOpenSideBar}>
+        <MenuButton
+          onClick={handleOpenSideBar}
+          role="button"
+          aria-label="menu-button"
+        >
           {openMenu ? (
             <IoClose style={{ fontSize: '28px' }} />
           ) : (

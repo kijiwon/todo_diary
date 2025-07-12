@@ -1,5 +1,4 @@
-/* eslint-disable import/no-named-as-default */
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';

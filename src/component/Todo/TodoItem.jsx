@@ -1,5 +1,4 @@
-/* eslint-disable import/no-named-as-default */
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import React, { useState } from 'react';
 import { completeTodo, deleteTodo } from '../../redux/todoSlice';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';

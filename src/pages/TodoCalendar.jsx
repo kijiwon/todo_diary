@@ -1,5 +1,4 @@
-/* eslint-disable import/no-named-as-default */
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import {
   CommonContainer,
   CommonLogo,

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { COLOR, SIZE } from '../style/Theme';
 import {
   CommonContainer,
