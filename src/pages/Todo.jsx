@@ -154,13 +154,19 @@ const Todo = () => {
           <p>{todayDateString}</p>
         </DateWrapper>
         <InputWrapper>
+          {/* <label htmlFor="todo-text" /> */}
           <input
+            aria-label="todo-text"
+            id="todo-text"
             ref={textRef}
             type="text"
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
+          {/* <label htmlFor="importance" /> */}
           <select
+            aria-label="importance"
+            id="importance"
             value={importance}
             onChange={(e) => setImportance(e.target.value)}
           >
